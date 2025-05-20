@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Success</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 10;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0066ff 0%, #0033cc 100%);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 20px;
+            padding-bottom: 60px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon span {
+            color: #0066ff;
+            font-weight: bold;
+        }
+
+        .notification {
+            position: relative;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #ff3b30;
+            border-radius: 50%;
+        }
+
+        .processing-container {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .success-container {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            display: none;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .processing-animation {
+            margin: 40px auto;
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top-color: white;
+            animation: spin 1.5s linear infinite;
+        }
+
+        .inner-circle {
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            width: 50%;
+            height: 50%;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top-color: white;
+            animation: spin 2s linear infinite reverse;
+        }
+
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #fff;
+            stroke-miterlimit: 10;
+            margin: 40px auto;
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+
+        .stat {
+            text-align: center;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .stat:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .stat:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .stat:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        .counter {
+            display: inline-block;
+            animation: countUp 3s ease-out forwards;
+        }
+
+        .btn {
+            background-color: white;
+            color: #0066ff;
+            border: none;
+            border-radius: 30px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-top: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .support-text {
+            margin: 30px 0;
+            font-size: 14px;
+            line-height: 1.5;
+            opacity: 0.9;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active {
+            color: #0066ff;
+            transform: translateY(-5px);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: #0066ff;
+            border-radius: 50%;
+        }
+
+        .nav-icon {
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .floating-bubble {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: pulse 2s infinite;
+            z-index: 100;
+            cursor: pointer;
+        }
+
+        .application-details {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes countUp {
+            from { content: "0"; }
+            to { content: attr(data-count); }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"><span>O</span></div>
+                Oyster Finance
+            </div>
+            <div class="notification">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <div class="notification-dot"></div>
+            </div>
+        </header>
+
+        <div class="processing-container" id="processingContainer">
+            <h1>Processing Your Loan Application</h1>
+            <p class="subtitle">Please Login below to see your application progress </p>
+            
+            <div class="processing-animation">
+                <div class="circle"></div>
+                <div class="inner-circle"></div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-count="98">0</span>%</div>
+                    <div class="stat-label">Completion</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-count="60">0</span>s</div>
+                    <div class="stat-label">Est. Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-count="3">0</span>/3</div>
+                    <div class="stat-label">Steps</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="success-container" id="successContainer">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            
+            <h1>Loan Application Successfully Submitted!</h1>
+            <p class="subtitle">Your application is now under processing you can also Track your Loan application by clicking track my loan application below</p>
+            
+            <div class="application-details" id="applicationDetails">
+                <div class="detail-row">
+                    <div class="detail-label">Full Name:</div>
+                    <div class="detail-value" id="fullNameValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">ID Number:</div>
+                    <div class="detail-value" id="idNumberValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Loan Amount:</div>
+                    <div class="detail-value" id="loanAmountValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Loan Term:</div>
+                    <div class="detail-value" id="loanTermValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Loan Purpose:</div>
+                    <div class="detail-value" id="loanPurposeValue">-</div>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-count="100">0</span>%</div>
+                    <div class="stat-label">Submitted</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-count="2">0</span>h</div>
+                    <div class="stat-label">Processing Time</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">#<span class="counter"  data-count="8543"></span></div>
+                    <div class="stat-label">Application No</div>
+                </div>
+            </div>
+        
+            <p class="support-text">For faster processing contact our loan application customer support by clicking contact support button below</p>
+            
+            <button class="btn" id="contactSupportBtn">Contact Support</button>
+            <a href="profile.html" class="btn btn-outline" id="homeBtn">Track My Application</a>
+        </div>
+    </div>
+    
+    <div class="floating-bubble" id="whatsappButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        </svg>
+    </div>
+
+    <div class="navigation">
+        <div class="nav-item" id="homeNav">
+            <div class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </div>
+            <span>Home</span>
+        </div>
+        <div class="nav-item">
+            <div class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position, size and animation delay
+                const size = Math.random() * 15 + 5;
+                const left = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 15 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${left}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const duration = 3000; // 3 seconds
+                const step = Math.ceil(target / (duration / 50)); // Update every 50ms
+                
+                let current = 0;
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        counter.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = current;
+                    }
+                }, 50);
+            });
+        }
+
+        // Get application data from localStorage with better error handling
+        function getApplicationData() {
+            try {
+                const savedData = localStorage.getItem('loanApplication');
+                if (savedData) {
+                    return JSON.parse(savedData);
+                }
+                
+                // Fallback: Check if there's data in sessionStorage as well
+                const sessionData = sessionStorage.getItem('loanApplication');
+                if (sessionData) {
+                    return JSON.parse(sessionData);
+                }
+                
+                // If we still don't have data, check URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('id')) {
+                    // Create a basic object from URL parameters
+                    return {
+                        idNumber: urlParams.get('id'),
+                        fullName: urlParams.get('name') || 'Applicant',
+                        loanAmount: urlParams.get('amount') || '50000',
+                        loanTerm: urlParams.get('term') || '24',
+                        loanPurpose: urlParams.get('purpose') || 'Personal Loan'
+                    };
+                }
+                
+                return null;
+            } catch (error) {
+                console.error('Error retrieving application data:', error);
+                return null;
+            }
+        }
+
+        // Populate application details with better error handling
+        function populateApplicationDetails() {
+            const applicationData = getApplicationData();
+            
+            if (applicationData) {
+                // Safely set text content with fallbacks
+                document.getElementById('fullNameValue').textContent = applicationData.fullName || '-';
+                document.getElementById('idNumberValue').textContent = applicationData.idNumber || '-';
+                
+                // Format loan amount with currency
+                if (applicationData.loanAmount) {
+                    let amount = applicationData.loanAmount;
+                    // Remove non-numeric characters if present
+                    amount = amount.toString().replace(/[^0-9]/g, '');
+                    document.getElementById('loanAmountValue').textContent = 'R' + parseInt(amount).toLocaleString();
+                } else {
+                    document.getElementById('loanAmountValue').textContent = '-';
+                }
+                
+                // Format loan term
+                if (applicationData.loanTerm) {
+                    document.getElementById('loanTermValue').textContent = applicationData.loanTerm + ' months';
+                } else {
+                    document.getElementById('loanTermValue').textContent = '-';
+                }
+                
+                document.getElementById('loanPurposeValue').textContent = applicationData.loanPurpose || '-';
+                
+                // Generate unique application number
+                const appNumber = generateApplicationNumber(applicationData.idNumber);
+                document.getElementById('applicationNumber').setAttribute('data-count', appNumber);
+            } else {
+                // If no data is found, use default values
+                console.warn('No application data found. Using default values.');
+                document.getElementById('fullNameValue').textContent = 'Demo Applicant';
+                document.getElementById('idNumberValue').textContent = '9001010000000';
+                document.getElementById('loanAmountValue').textContent = 'R50,000';
+                document.getElementById('loanTermValue').textContent = '24 months';
+                document.getElementById('loanPurposeValue').textContent = 'Personal Loan';
+            }
+        }
+
+        // Generate unique application number based on ID number
+        function generateApplicationNumber(idNumber) {
+            if (!idNumber) return 8742; // Default if no ID number
+            
+            // Use the last 4 digits of ID number + random number
+            const lastFourDigits = idNumber.slice(-4);
+            const randomNum = Math.floor(Math.random() * 9000) + 1000;
+            return parseInt(lastFourDigits + randomNum.toString().slice(-2));
+        }
+
+        // Show success container after 6 seconds
+        function showSuccessAfterDelay() {
+            setTimeout(() => {
+                document.getElementById('processingContainer').style.display = 'none';
+                document.getElementById('successContainer').style.display = 'block';
+                
+                // Populate application details
+                populateApplicationDetails();
+                
+                // Re-animate counters for success container
+                animateCounters();
+                
+                // Animate success container elements
+                const elements = document.querySelectorAll('#successContainer > *');
+                elements.forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    el.style.transitionDelay = `${index * 0.1}s`;
+                    
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100);
+                });
+            }, 6000);
+        }
+
+        // Button event listeners
+        document.getElementById('contactSupportBtn').addEventListener('click', function() {
+            window.location.href = 'https://wa.me/+27698480097';
+        });
+
+        document.getElementById('homeBtn').addEventListener('click', function() {
+            try {
+                // Try to navigate to the parent site first
+                window.location.href = 'https://oysterpersonalfinance.github.io/loans/';
+            } catch (e) {
+                // Fallback to index.html
+                window.location.href = 'index.html';
+            }
+        });
+
+        document.getElementById('homeNav').addEventListener('click', function() {
+            try {
+                // Try to navigate to the parent site first
+                window.location.href = 'https://oysterpersonalfinance.github.io/loans/';
+            } catch (e) {
+                // Fallback to index.html
+                window.location.href = 'index.html';
+            }
+        });
+
+        document.getElementById('whatsappButton').addEventListener('click', function() {
+            window.location.href = 'https://wa.me/+27698480097';
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if we just came from the form submission
+            const justSubmitted = sessionStorage.getItem('formSubmitted');
+            if (justSubmitted === 'true') {
+                // Clear the flag
+                sessionStorage.removeItem('formSubmitted');
+            } else {
+                // If we didn't just submit the form, check if we have application data
+                const applicationData = getApplicationData();
+                if (!applicationData) {
+                    // If no data and we didn't just submit, redirect to the form
+                    console.warn('No application data found and no form submission detected.');
+                    // Uncomment the line below to enable auto-redirect
+                    // window.location.href = 'index.html';
+                }
+            }
+            createParticles();
+            animateCounters();
+            showSuccessAfterDelay();
+        });
+    </script>
+</body>
+</html>
