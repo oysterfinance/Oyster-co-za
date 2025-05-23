@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Contact Us - Oyster Finance</title>
+<meta name="theme-color" content="#0066ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+:root {
+    --primary: #0066ff;
+    --primary-dark: #0055cc;
+    --primary-light: #4d94ff;
+    --primary-gradient: linear-gradient(135deg, #0066ff, #5e17eb);
+    --secondary: #e60023;
+    --secondary-dark: #cc0000;
+    --secondary-light: #ff3355;
+    --secondary-gradient: linear-gradient(135deg, #e60023, #ff5c8a);
+    --success: #00cc66;
+    --success-dark: #00aa55;
+    --success-light: #33dd87;
+    --success-gradient: linear-gradient(135deg, #00cc66, #00e673);
+    --warning: #ffcc00;
+    --warning-gradient: linear-gradient(135deg, #ffcc00, #ffaa00);
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --gray-light: #e9ecef;
+    --gray-dark: #343a40;
+    --body-bg: #f5f7fa;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --bottom-nav-height: 65px;
+    --header-height: 60px;
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+    color: var(--dark);
+    position: fixed;
+    overscroll-behavior: none;
+}
+
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* App Header */
+.app-header {
+    height: calc(var(--header-height) + var(--safe-area-top));
+    padding-top: var(--safe-area-top);
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: max(16px, var(--safe-area-left));
+    padding-right: max(16px, var(--safe-area-right));
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.logo-container img {
+    height: 32px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.app-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.header-icon:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+.header-icon .badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary);
+    animation: pulse 2s infinite;
+}
+
+/* App Content */
+.app-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--bottom-nav-height) + var(--safe-area-bottom));
+    padding-bottom: var(--safe-area-bottom);
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    gap: 60px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    min-width: 80px;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-item.active {
+    color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 6px;
+    transition: transform 0.3s;
+}
+
+.nav-item.active i {
+    transform: scale(1.2);
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+/* Advanced Hero Section with Grid Layout */
+.hero-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+    height: 65vh;
+    max-height: 550px;
+    min-height: 450px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E"),
+                     radial-gradient(circle at 25% 25%, rgba(94, 23, 235, 0.1) 0%, transparent 50%),
+                     radial-gradient(circle at 75% 75%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+    z-index: 2;
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-column: 1;
+}
+
+.hero-image-container {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: white;
+    border-radius: 2px;
+}
+
+.hero-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 300px;
+    z-index: 4;
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.25));
+    animation: float 6s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(2deg); }
+    50% { transform: translateY(-15px) rotate(0deg); }
+    75% { transform: translateY(-10px) rotate(-2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Animated Elements in Hero */
+.hero-shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.hero-shape {
+    position: absolute;
+    z-index: 2;
+    opacity: 0.5;
+}
+
+.hero-shape-1 {
+    top: 20%;
+    left: 10%;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: pulse 4s infinite;
+}
+
+.hero-shape-2 {
+    bottom: 20%;
+    left: 5%;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transform: rotate(45deg);
+    animation: pulse 5s infinite 1s;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 0 20px 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 102, 255, 0.05);
+    z-index: 0;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.card-title.with-line::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+}
+
+/* Contact Form */
+.contact-info {
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: var(--primary-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    flex-shrink: 0;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.2);
+}
+
+.contact-icon i {
+    font-size: 22px;
+}
+
+.contact-text {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.contact-text strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--gray-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 15px;
+    border: 2px solid var(--gray-light);
+    font-size: 16px;
+    transition: all 0.3s;
+    background-color: white;
+    appearance: none;
+    min-height: 50px;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-height: 50px;
+    min-width: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:active::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);
+}
+
+.btn-primary:active {
+    background: var(--primary-dark);
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
+}
+
+.btn-secondary {
+    background: var(--secondary-gradient);
+    color: white;
+    box-shadow: 0 5px 15px rgba(230, 0, 35, 0.3);
+}
+
+.btn-secondary:active {
+    background: var(--secondary-dark);
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(230, 0, 35, 0.2);
+}
+
+.btn-success {
+    background: var(--success-gradient);
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 204, 102, 0.3);
+}
+
+.btn-success:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 204, 102, 0.2);
+}
+
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+.btn-icon {
+    margin-right: 10px;
+}
+
+/* WhatsApp Button */
+#whatsapp-button {
+    position: fixed;
+    bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: pulse 2s infinite;
+    border: none;
+    outline: none;
+}
+
+#whatsapp-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#whatsapp-button i {
+    font-size: 30px;
+}
+
+/* Map Container */
+.map-container {
+    border-radius: 20px;
+    overflow: hidden;
+    height: 250px;
+    box-shadow: var(--card-shadow);
+    margin-top: 20px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Quick Contact Section */
+.quick-contact {
+    background: var(--primary-gradient);
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin: 30px 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-contact::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.quick-contact h2 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.quick-contact p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.quick-contact-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.btn-call {
+    background: var(--secondary);
+    color: white;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mb-20 { margin-bottom: 20px; }
+.mt-20 { margin-top: 20px; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .hero-image-container {
+        display: none;
+    }
+    
+    .hero-content {
+        grid-column: 1;
+        text-align: center;
+    }
+    
+    .quick-contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .quick-contact-buttons .btn {
+        width: 200px;
+    }
+}
+</style>
+</head>
+<body>
+<div class="app-container">
+    <!-- App Header -->
+    <div class="app-header">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Oyster Finance">
+        </div>
+        <h1>Contact Us</h1>
+        <div class="header-icon">
+            <i class="fas fa-bell"></i>
+            <div class="badge">3</div>
+        </div>
+    </div>
+
+    <!-- App Content -->
+    <div class="app-content">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            <div class="hero-shapes-container">
+                <div class="hero-shape hero-shape-1"></div>
+                <div class="hero-shape hero-shape-2"></div>
+            </div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">Get in Touch</h1>
+                <p class="hero-subtitle">We're here to help you with all your financial needs. Contact our expert team today!</p>
+            </div>
+            
+            <div class="hero-image-container">
+                <img src="img/screenshot-2025-03-19-10-04-04-removebg-preview (1).png" alt="Contact us" class="hero-image" style="object-fit: contain; width: 100%; height: 100%;">
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="card">
+            <div class="card-title with-line">Contact Information</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>Our Address</strong>
+                        20 Georgian Crescent, Bryanston East Hampton Office Park, Johannesburg 2191
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>Phone Number</strong>
+                        +27 69 848 0097
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>Email Address</strong>
+                        oysterfinanceltd@gmail.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-text">
+                        <strong>Working Hours</strong>
+                        Everyday: 06:00 AM - 7:00 PM
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card">
+            <div class="card-title with-line">Send us a Message</div>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject</label>
+                    <select id="subject" name="subject" class="form-control" required>
+                        <option value="">Select a subject</option>
+                        <option value="loan-inquiry">Loan Inquiry</option>
+                        <option value="application-status">Application Status</option>
+                        <option value="general-support">General Support</option>
+                        <option value="complaint">Complaint</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us how we can help you..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-paper-plane btn-icon"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Map Section -->
+        <div class="card">
+            <div class="card-title with-line">Find Our Office</div>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.0123456789!2d28.0123456!3d-26.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA3JzI0LjQiUyAyOMKwMDAnNDQuNCJF!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Quick Contact Section -->
+        <div class="quick-contact">
+            <h2>Need Immediate Help?</h2>
+            <p>Contact us directly for urgent loan inquiries or support</p>
+            <div class="quick-contact-buttons">
+                <a href="https://wa.me/+27698480097" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp btn-icon"></i>
+                    WhatsApp
+                </a>
+                <a href="tel:+27698480097" class="btn btn-call">
+                    <i class="fas fa-phone btn-icon"></i>
+                    Call Now
+                </a>
+                <a href="mailto:oysterfinanceltd@gmail.com" class="btn btn-success">
+                    <i class="fas fa-envelope btn-icon"></i>
+                    Email
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="index.html#apply" class="nav-item">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Apply</span>
+        </a>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <button id="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+</div>
+
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Contact Form Submission
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const phone = formData.get('phone');
+        const subject = formData.get('subject');
+        const message = formData.get('message');
+        
+        // Create WhatsApp message
+        const whatsappMessage = `Hello! I'm ${name}.%0A%0AEmail: ${email}%0APhone: ${phone}%0ASubject: ${subject}%0A%0AMessage: ${message}`;
+        
+        // Open WhatsApp
+        window.open(`https://wa.me/+27698480097?text=${whatsappMessage}`, '_blank');
+        
+        // Show success message
+        alert('Thank you for your message! You will be redirected to WhatsApp to complete your inquiry.');
+        
+        // Reset form
+        contactForm.reset();
+    });
+    
+    // WhatsApp Button
+    document.getElementById('whatsapp-button').addEventListener('click', function() {
+        window.open('https://wa.me/+27698480097', '_blank');
+    });
+});
+</script>
+</body>
+</html>
