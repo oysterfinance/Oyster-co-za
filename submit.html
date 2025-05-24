@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 10;
+            margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
@@ -85,6 +85,13 @@
             display: none;
         }
 
+        .error-container {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            display: none;
+        }
+
         h1 {
             font-size: 24px;
             margin-bottom: 10px;
@@ -136,6 +143,19 @@
             stroke-miterlimit: 10;
             margin: 40px auto;
             box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #ff3b30;
+            stroke-miterlimit: 10;
+            margin: 40px auto;
+            box-shadow: 0 0 0 rgba(255, 59, 48, 0.5);
             animation: pulse 2s infinite;
         }
 
@@ -193,6 +213,8 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 350px;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .btn:hover {
@@ -244,6 +266,7 @@
             font-size: 12px;
             cursor: pointer;
             transition: all 0.3s;
+            text-decoration: none;
         }
 
         .nav-item.active {
@@ -410,7 +433,7 @@
 
         <div class="processing-container" id="processingContainer">
             <h1>Processing Your Loan Application</h1>
-            <p class="subtitle">Please Login below to see your application progress </p>
+            <p class="subtitle">Please wait while we process your application details</p>
             
             <div class="processing-animation">
                 <div class="circle"></div>
@@ -440,7 +463,7 @@
             </svg>
             
             <h1>Loan Application Successfully Submitted!</h1>
-            <p class="subtitle">Your application is now under processing you can also Track your Loan application by clicking track my loan application below</p>
+            <p class="subtitle">Your application is now under processing. You can track your loan application by clicking track my loan application below</p>
             
             <div class="application-details" id="applicationDetails">
                 <div class="detail-row">
@@ -450,6 +473,14 @@
                 <div class="detail-row">
                     <div class="detail-label">ID Number:</div>
                     <div class="detail-value" id="idNumberValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Contact Number:</div>
+                    <div class="detail-value" id="contactNumberValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Email Address:</div>
+                    <div class="detail-value" id="emailAddressValue">-</div>
                 </div>
                 <div class="detail-row">
                     <div class="detail-label">Loan Amount:</div>
@@ -463,6 +494,14 @@
                     <div class="detail-label">Loan Purpose:</div>
                     <div class="detail-value" id="loanPurposeValue">-</div>
                 </div>
+                <div class="detail-row">
+                    <div class="detail-label">Monthly Income:</div>
+                    <div class="detail-value" id="monthlyIncomeValue">-</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Bank Name:</div>
+                    <div class="detail-value" id="bankNameValue">-</div>
+                </div>
             </div>
             
             <div class="stats-container">
@@ -475,7 +514,7 @@
                     <div class="stat-label">Processing Time</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">#<span class="counter"  data-count="8543"></span></div>
+                    <div class="stat-number">#<span class="counter" id="applicationNumber" data-count="0">0</span></div>
                     <div class="stat-label">Application No</div>
                 </div>
             </div>
@@ -483,7 +522,19 @@
             <p class="support-text">For faster processing contact our loan application customer support by clicking contact support button below</p>
             
             <button class="btn" id="contactSupportBtn">Contact Support</button>
-            <a href="profile.html" class="btn btn-outline" id="homeBtn">Track My Application</a>
+            <a href="profile.html" class="btn btn-outline" id="trackBtn">Track My Application</a>
+        </div>
+
+        <div class="error-container" id="errorContainer">
+            <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="error-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="error-x" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+            </svg>
+            
+            <h1>Application Data Not Found</h1>
+            <p class="subtitle">We couldn't find your application details. Please complete the application form first.</p>
+            
+            <button class="btn" id="returnToFormBtn">Complete Application</button>
         </div>
     </div>
     
@@ -494,7 +545,7 @@
     </div>
 
     <div class="navigation">
-        <div class="nav-item" id="homeNav">
+        <a href="index.html" class="nav-item" id="homeNav">
             <div class="nav-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -502,8 +553,8 @@
                 </svg>
             </div>
             <span>Home</span>
-        </div>
-        <div class="nav-item">
+        </a>
+        <a href="profile.html" class="nav-item">
             <div class="nav-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -512,7 +563,8 @@
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
             </div>
-        </div>
+            <span>Profile</span>
+        </a>
     </div>
 
     <script>
@@ -565,7 +617,7 @@
             });
         }
 
-        // Get application data from localStorage with better error handling
+        // Get application data from localStorage
         function getApplicationData() {
             try {
                 const savedData = localStorage.getItem('loanApplication');
@@ -573,23 +625,10 @@
                     return JSON.parse(savedData);
                 }
                 
-                // Fallback: Check if there's data in sessionStorage as well
+                // Check sessionStorage as backup
                 const sessionData = sessionStorage.getItem('loanApplication');
                 if (sessionData) {
                     return JSON.parse(sessionData);
-                }
-                
-                // If we still don't have data, check URL parameters
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.has('id')) {
-                    // Create a basic object from URL parameters
-                    return {
-                        idNumber: urlParams.get('id'),
-                        fullName: urlParams.get('name') || 'Applicant',
-                        loanAmount: urlParams.get('amount') || '50000',
-                        loanTerm: urlParams.get('term') || '24',
-                        loanPurpose: urlParams.get('purpose') || 'Personal Loan'
-                    };
                 }
                 
                 return null;
@@ -599,132 +638,136 @@
             }
         }
 
-        // Populate application details with better error handling
+        // Generate unique application number based on ID number and timestamp
+        function generateApplicationNumber(idNumber) {
+            if (!idNumber) {
+                // Use current timestamp if no ID number
+                return parseInt(Date.now().toString().slice(-4));
+            }
+            
+            // Use the last 4 digits of ID number + current timestamp
+            const lastFourDigits = idNumber.slice(-4);
+            const timestamp = Date.now().toString().slice(-2);
+            return parseInt(lastFourDigits + timestamp);
+        }
+
+        // Populate application details
         function populateApplicationDetails() {
             const applicationData = getApplicationData();
             
-            if (applicationData) {
-                // Safely set text content with fallbacks
-                document.getElementById('fullNameValue').textContent = applicationData.fullName || '-';
-                document.getElementById('idNumberValue').textContent = applicationData.idNumber || '-';
-                
-                // Format loan amount with currency
-                if (applicationData.loanAmount) {
-                    let amount = applicationData.loanAmount;
-                    // Remove non-numeric characters if present
-                    amount = amount.toString().replace(/[^0-9]/g, '');
-                    document.getElementById('loanAmountValue').textContent = 'R' + parseInt(amount).toLocaleString();
-                } else {
-                    document.getElementById('loanAmountValue').textContent = '-';
-                }
-                
-                // Format loan term
-                if (applicationData.loanTerm) {
-                    document.getElementById('loanTermValue').textContent = applicationData.loanTerm + ' months';
-                } else {
-                    document.getElementById('loanTermValue').textContent = '-';
-                }
-                
-                document.getElementById('loanPurposeValue').textContent = applicationData.loanPurpose || '-';
-                
-                // Generate unique application number
-                const appNumber = generateApplicationNumber(applicationData.idNumber);
-                document.getElementById('applicationNumber').setAttribute('data-count', appNumber);
-            } else {
-                // If no data is found, use default values
-                console.warn('No application data found. Using default values.');
-                document.getElementById('fullNameValue').textContent = 'Demo Applicant';
-                document.getElementById('idNumberValue').textContent = '9001010000000';
-                document.getElementById('loanAmountValue').textContent = 'R50,000';
-                document.getElementById('loanTermValue').textContent = '24 months';
-                document.getElementById('loanPurposeValue').textContent = 'Personal Loan';
+            if (!applicationData) {
+                // Show error container if no data found
+                showErrorContainer();
+                return false;
             }
-        }
 
-        // Generate unique application number based on ID number
-        function generateApplicationNumber(idNumber) {
-            if (!idNumber) return 8742; // Default if no ID number
+            // Populate all fields with actual data
+            document.getElementById('fullNameValue').textContent = applicationData.fullName || 'Not provided';
+            document.getElementById('idNumberValue').textContent = applicationData.idNumber || 'Not provided';
+            document.getElementById('contactNumberValue').textContent = applicationData.contactNumber || 'Not provided';
+            document.getElementById('emailAddressValue').textContent = applicationData.emailAddress || 'Not provided';
             
-            // Use the last 4 digits of ID number + random number
-            const lastFourDigits = idNumber.slice(-4);
-            const randomNum = Math.floor(Math.random() * 9000) + 1000;
-            return parseInt(lastFourDigits + randomNum.toString().slice(-2));
+            // Format loan amount with currency
+            if (applicationData.loanAmountRequest) {
+                let amount = applicationData.loanAmountRequest.toString().replace(/[^0-9]/g, '');
+                document.getElementById('loanAmountValue').textContent = 'R' + parseInt(amount).toLocaleString();
+            } else {
+                document.getElementById('loanAmountValue').textContent = 'Not provided';
+            }
+            
+            // Format loan term
+            if (applicationData.loanTermSelect) {
+                document.getElementById('loanTermValue').textContent = applicationData.loanTermSelect + ' months';
+            } else {
+                document.getElementById('loanTermValue').textContent = 'Not provided';
+            }
+            
+            document.getElementById('loanPurposeValue').textContent = applicationData.loanPurposeSelect || 'Not provided';
+            
+            // Format monthly income
+            if (applicationData.monthlyIncome) {
+                let income = applicationData.monthlyIncome.toString().replace(/[^0-9]/g, '');
+                document.getElementById('monthlyIncomeValue').textContent = 'R' + parseInt(income).toLocaleString();
+            } else {
+                document.getElementById('monthlyIncomeValue').textContent = 'Not provided';
+            }
+            
+            document.getElementById('bankNameValue').textContent = applicationData.bankName || 'Not provided';
+            
+            // Generate and set unique application number
+            const appNumber = generateApplicationNumber(applicationData.idNumber);
+            document.getElementById('applicationNumber').setAttribute('data-count', appNumber);
+            
+            return true;
         }
 
-        // Show success container after 6 seconds
+        // Show error container when no data is found
+        function showErrorContainer() {
+            document.getElementById('processingContainer').style.display = 'none';
+            document.getElementById('successContainer').style.display = 'none';
+            document.getElementById('errorContainer').style.display = 'block';
+        }
+
+        // Show success container after processing
         function showSuccessAfterDelay() {
             setTimeout(() => {
-                document.getElementById('processingContainer').style.display = 'none';
-                document.getElementById('successContainer').style.display = 'block';
+                const hasData = populateApplicationDetails();
                 
-                // Populate application details
-                populateApplicationDetails();
-                
-                // Re-animate counters for success container
-                animateCounters();
-                
-                // Animate success container elements
-                const elements = document.querySelectorAll('#successContainer > *');
-                elements.forEach((el, index) => {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(20px)';
-                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    el.style.transitionDelay = `${index * 0.1}s`;
+                if (hasData) {
+                    document.getElementById('processingContainer').style.display = 'none';
+                    document.getElementById('successContainer').style.display = 'block';
                     
-                    setTimeout(() => {
-                        el.style.opacity = '1';
-                        el.style.transform = 'translateY(0)';
-                    }, 100);
-                });
-            }, 6000);
+                    // Re-animate counters for success container
+                    animateCounters();
+                    
+                    // Animate success container elements
+                    const elements = document.querySelectorAll('#successContainer > *');
+                    elements.forEach((el, index) => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateY(20px)';
+                        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                        el.style.transitionDelay = `${index * 0.1}s`;
+                        
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 100);
+                    });
+                }
+            }, 4000); // Reduced to 4 seconds for better UX
         }
 
         // Button event listeners
         document.getElementById('contactSupportBtn').addEventListener('click', function() {
-            window.location.href = 'https://wa.me/+27698480097';
-        });
-
-        document.getElementById('homeBtn').addEventListener('click', function() {
-            try {
-                // Try to navigate to the parent site first
-                window.location.href = 'https://oysterpersonalfinance.github.io/loans/';
-            } catch (e) {
-                // Fallback to index.html
-                window.location.href = 'index.html';
-            }
-        });
-
-        document.getElementById('homeNav').addEventListener('click', function() {
-            try {
-                // Try to navigate to the parent site first
-                window.location.href = 'https://oysterpersonalfinance.github.io/loans/';
-            } catch (e) {
-                // Fallback to index.html
-                window.location.href = 'index.html';
-            }
+            window.open('https://wa.me/+27698480097', '_blank');
         });
 
         document.getElementById('whatsappButton').addEventListener('click', function() {
-            window.location.href = 'https://wa.me/+27698480097';
+            window.open('https://wa.me/+27698480097', '_blank');
+        });
+
+        // Error container button
+        document.addEventListener('DOMContentLoaded', function() {
+            const returnToFormBtn = document.getElementById('returnToFormBtn');
+            if (returnToFormBtn) {
+                returnToFormBtn.addEventListener('click', function() {
+                    window.location.href = 'index.html';
+                });
+            }
         });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if we just came from the form submission
-            const justSubmitted = sessionStorage.getItem('formSubmitted');
-            if (justSubmitted === 'true') {
-                // Clear the flag
-                sessionStorage.removeItem('formSubmitted');
-            } else {
-                // If we didn't just submit the form, check if we have application data
-                const applicationData = getApplicationData();
-                if (!applicationData) {
-                    // If no data and we didn't just submit, redirect to the form
-                    console.warn('No application data found and no form submission detected.');
-                    // Uncomment the line below to enable auto-redirect
-                    // window.location.href = 'index.html';
-                }
+            // Check if application data exists immediately
+            const applicationData = getApplicationData();
+            
+            if (!applicationData) {
+                // If no data found, show error immediately
+                showErrorContainer();
+                return;
             }
+            
+            // If data exists, proceed with normal flow
             createParticles();
             animateCounters();
             showSuccessAfterDelay();
