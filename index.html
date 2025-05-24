@@ -1805,6 +1805,160 @@ textarea.form-control {
     75% { transform: translate(-25px, 25px) rotate(270deg); }
     100% { transform: translate(0, 0) rotate(360deg); }
 }
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: white;
+    color: #333;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.popup-overlay:target .popup-content {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.popup-header h3 {
+    color: #0066ff;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.popup-close {
+    width: 40px;
+    height: 40px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #666;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.popup-body {
+    line-height: 1.6;
+}
+
+.popup-body h4 {
+    color: #0066ff;
+    margin: 20px 0 10px 0;
+    font-size: 18px;
+}
+
+.popup-body p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.popup-body ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.popup-body li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.contact-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.contact-info h4 {
+    color: #0066ff;
+    margin-bottom: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contact-item i {
+    width: 30px;
+    color: #0066ff;
+    margin-right: 10px;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .popup-content {
+        padding: 20px;
+        margin: 20px;
+    }
+    
+    .popup-header h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-social {
+        gap: 15px;
+    }
+    
+    .social-icon {
+        width: 45px;
+        height: 45px;
+    }
+}
 
 /* NEW STYLES FOR ADDED FUNCTIONALITY */
 
@@ -3004,50 +3158,584 @@ textarea.form-control {
                 </div>
             </div>
 
-            <div class="footer-section">
-                <div class="footer-logo">
-                    <img src="img/logo.png" alt="Oyster Finance" width="40">
-                    <span>Oyster Finance</span>
+             <!-- Footer Section -->
+    <div class="footer-section">
+        <div class="footer-logo">
+            <img src="img/logo.png" alt="Oyster Finance" width="40">
+            <span>Oyster Finance</span>
+        </div>
+        <div class="footer-links">
+            <div class="footer-links-column">
+                <h4>Company</h4>
+                <a href="#about-popup">About Us</a>
+                <a href="#careers-popup">Careers</a>
+                <a href="#press-popup">Press</a>
+            </div>
+            <div class="footer-links-column">
+                <h4>Products</h4>
+                <a href="#personal-loans-popup">Personal Loans</a>
+                <a href="#business-loans-popup">Business Loans</a>
+                <a href="#education-loans-popup">Education Loans</a>
+            </div>
+            <div class="footer-links-column">
+                <h4>Resources</h4>
+                <a href="#blog-popup">Blog</a>
+                <a href="#faqs-popup">FAQs</a>
+                <a href="#calculator-popup">Loan Calculator</a>
+            </div>
+            <div class="footer-links-column">
+                <h4>Legal</h4>
+                <a href="#terms-popup">Terms of Service</a>
+                <a href="#privacy-popup">Privacy Policy</a>
+                <a href="#complaints-popup">Complaints</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://facebook.com/oysterfinance" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/oysterfinance" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/oysterfinance" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://linkedin.com/company/oysterfinance" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Oyster Finance. All rights reserved. Oyster Finance is a registered credit provider (NCRCP12345).</p>
+            <p>Address: 20 Georgian Crescent, Bryanston East Hampton Office Park, Johannesburg 2191</p>
+        </div>
+    </div>
+</div>
+
+<!-- Popup Overlays -->
+
+<!-- About Us Popup -->
+<div id="about-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>About Oyster Finance</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Oyster Finance is South Africa's leading digital lending platform, committed to providing accessible and transparent financial solutions to individuals and businesses across the country.</p>
+            
+            <h4>Our Mission</h4>
+            <p>To democratize access to credit by leveraging technology to create fair, fast, and transparent lending solutions that empower our customers to achieve their financial goals.</p>
+            
+            <h4>Our Values</h4>
+            <ul>
+                <li><strong>Transparency:</strong> Clear terms, no hidden fees</li>
+                <li><strong>Innovation:</strong> Cutting-edge technology for better service</li>
+                <li><strong>Responsibility:</strong> Ethical lending practices</li>
+                <li><strong>Customer-First:</strong> Your success is our priority</li>
+            </ul>
+            
+            <h4>Why Choose Us?</h4>
+            <ul>
+                <li>Quick approval process (as fast as 24 hours)</li>
+                <li>Competitive interest rates</li>
+                <li>Flexible repayment terms</li>
+                <li>No hidden fees or charges</li>
+                <li>Excellent customer support</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Careers Popup -->
+<div id="careers-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Join Our Team</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>At Oyster Finance, we're always looking for talented individuals who share our passion for innovation and customer service.</p>
+            
+            <h4>Current Openings</h4>
+            <ul>
+                <li>Senior Software Developer</li>
+                <li>Credit Risk Analyst</li>
+                <li>Customer Success Manager</li>
+                <li>Digital Marketing Specialist</li>
+                <li>Compliance Officer</li>
+            </ul>
+            
+            <h4>Why Work With Us?</h4>
+            <ul>
+                <li>Competitive salary and benefits</li>
+                <li>Flexible working arrangements</li>
+                <li>Professional development opportunities</li>
+                <li>Collaborative work environment</li>
+                <li>Performance-based bonuses</li>
+            </ul>
+            
+            <div class="contact-info">
+                <h4>Apply Now</h4>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>careers@oysterfinance.co.za</span>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-links-column">
-                        <h4>Company</h4>
-                        <a href="#">About Us</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Press</a>
-                    </div>
-                    <div class="footer-links-column">
-                        <h4>Products</h4>
-                        <a href="#">Personal Loans</a>
-                        <a href="#">Business Loans</a>
-                        <a href="#">Education Loans</a>
-                    </div>
-                    <div class="footer-links-column">
-                        <h4>Resources</h4>
-                        <a href="#">Blog</a>
-                        <a href="#">FAQs</a>
-                        <a href="#">Loan Calculator</a>
-                    </div>
-                    <div class="footer-links-column">
-                        <h4>Legal</h4>
-                        <a href="#">Terms of Service</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Complaints</a>
-                    </div>
-                </div>
-                <div class="footer-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <div class="footer-bottom">
-                    <p>© 2025 Oyster Finance. All rights reserved. Oyster Finance is a registered credit provider (NCRCP12345).</p>
-                    <p>Address: 20 Georgian Crescent, Bryanston East Hampton Office Park, Johannesburg 2191</p>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn: /company/oysterfinance</span>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
+<!-- Press Popup -->
+<div id="press-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Press & Media</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Stay updated with the latest news and announcements from Oyster Finance.</p>
+            
+            <h4>Recent Press Releases</h4>
+            <ul>
+                <li><strong>January 2025:</strong> Oyster Finance launches new mobile app with enhanced security features</li>
+                <li><strong>December 2024:</strong> Company reaches milestone of R1 billion in loans disbursed</li>
+                <li><strong>November 2024:</strong> Partnership announcement with major South African banks</li>
+                <li><strong>October 2024:</strong> Introduction of AI-powered credit assessment system</li>
+            </ul>
+            
+            <h4>Awards & Recognition</h4>
+            <ul>
+                <li>Best Fintech Innovation Award 2024</li>
+                <li>Customer Choice Award - Digital Lending 2024</li>
+                <li>Top 100 Companies to Work For 2024</li>
+            </ul>
+            
+            <div class="contact-info">
+                <h4>Media Inquiries</h4>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>press@oysterfinance.co.za</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+27 11 234 5678</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Personal Loans Popup -->
+<div id="personal-loans-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Personal Loans</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Get the funds you need for life's important moments with our flexible personal loan options.</p>
+            
+            <h4>Loan Features</h4>
+            <ul>
+                <li><strong>Loan Amount:</strong> R5,000 - R300,000</li>
+                <li><strong>Repayment Period:</strong> 6 - 60 months</li>
+                <li><strong>Interest Rate:</strong> From 15.5% per annum</li>
+                <li><strong>Processing Time:</strong> 24-48 hours</li>
+                <li><strong>No Hidden Fees:</strong> Transparent pricing</li>
+            </ul>
+            
+            <h4>What You Can Use It For</h4>
+            <ul>
+                <li>Home improvements and renovations</li>
+                <li>Debt consolidation</li>
+                <li>Medical expenses</li>
+                <li>Education and training</li>
+                <li>Vehicle purchases</li>
+                <li>Wedding expenses</li>
+                <li>Emergency expenses</li>
+            </ul>
+            
+            <h4>Requirements</h4>
+            <ul>
+                <li>South African citizen or permanent resident</li>
+                <li>Minimum age: 18 years</li>
+                <li>Minimum monthly income: R3,500</li>
+                <li>Valid bank account</li>
+                <li>Proof of income</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Business Loans Popup -->
+<div id="business-loans-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Business Loans</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Fuel your business growth with our tailored business financing solutions.</p>
+            
+            <h4>Loan Features</h4>
+            <ul>
+                <li><strong>Loan Amount:</strong> R50,000 - R2,000,000</li>
+                <li><strong>Repayment Period:</strong> 12 - 84 months</li>
+                <li><strong>Interest Rate:</strong> From 12.5% per annum</li>
+                <li><strong>Processing Time:</strong> 3-5 business days</li>
+                <li><strong>Flexible Terms:</strong> Customized to your business needs</li>
+            </ul>
+            
+            <h4>Business Purposes</h4>
+            <ul>
+                <li>Working capital financing</li>
+                <li>Equipment and machinery purchase</li>
+                <li>Business expansion</li>
+                <li>Inventory financing</li>
+                <li>Commercial property purchase</li>
+                <li>Technology upgrades</li>
+                <li>Marketing and advertising</li>
+            </ul>
+            
+            <h4>Requirements</h4>
+            <ul>
+                <li>Registered business in South Africa</li>
+                <li>Minimum 12 months trading history</li>
+                <li>Monthly turnover: R50,000+</li>
+                <li>Valid business registration documents</li>
+                <li>Financial statements</li>
+                <li>Bank statements (6 months)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Education Loans Popup -->
+<div id="education-loans-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Education Loans</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Invest in your future with our education financing options designed to make quality education accessible.</p>
+            
+            <h4>Loan Features</h4>
+            <ul>
+                <li><strong>Loan Amount:</strong> R10,000 - R500,000</li>
+                <li><strong>Repayment Period:</strong> Up to 10 years</li>
+                <li><strong>Interest Rate:</strong> From 10.5% per annum</li>
+                <li><strong>Grace Period:</strong> Up to 6 months after graduation</li>
+                <li><strong>Flexible Payments:</strong> Interest-only during studies</li>
+            </ul>
+            
+            <h4>What's Covered</h4>
+            <ul>
+                <li>University and college tuition fees</li>
+                <li>Postgraduate studies</li>
+                <li>Professional certifications</li>
+                <li>Online courses and training</li>
+                <li>Study materials and equipment</li>
+                <li>Accommodation expenses</li>
+                <li>International study programs</li>
+            </ul>
+            
+            <h4>Benefits</h4>
+            <ul>
+                <li>No upfront fees</li>
+                <li>Competitive interest rates</li>
+                <li>Flexible repayment options</li>
+                <li>Quick approval process</li>
+                <li>Support throughout your studies</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- FAQs Popup -->
+<div id="faqs-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Frequently Asked Questions</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <h4>How long does the application process take?</h4>
+            <p>Most applications are processed within 24-48 hours. Business loans may take 3-5 business days due to additional documentation requirements.</p>
+            
+            <h4>What documents do I need to apply?</h4>
+            <p>You'll need a valid ID, proof of income (payslips or bank statements), and proof of residence. Additional documents may be required based on the loan type.</p>
+            
+            <h4>Can I apply if I have bad credit?</h4>
+            <p>We consider applications from all credit profiles. While good credit improves your chances, we also look at your current financial situation and ability to repay.</p>
+            
+            <h4>Are there any hidden fees?</h4>
+            <p>No, we believe in transparent pricing. All fees and charges are clearly disclosed upfront before you sign any agreement.</p>
+            
+            <h4>Can I pay off my loan early?</h4>
+            <p>Yes, you can settle your loan early without any penalties. This can help you save on interest charges.</p>
+            
+            <h4>How do I check my application status?</h4>
+            <p>You can track your application status through our online portal or mobile app using your application reference number.</p>
+            
+            <div class="contact-info">
+                <h4>Still Have Questions?</h4>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp: +27 69 848 0097</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>support@oysterfinance.co.za</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms of Service Popup -->
+<div id="terms-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Terms of Service</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p><strong>Last Updated:</strong> January 2025</p>
+            
+            <h4>1. Acceptance of Terms</h4>
+            <p>By using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations.</p>
+            
+            <h4>2. Loan Agreement</h4>
+            <p>All loans are subject to credit approval and verification of information provided. Loan terms, including interest rates and repayment schedules, will be clearly outlined in your loan agreement.</p>
+            
+            <h4>3. Responsibilities</h4>
+            <ul>
+                <li>Provide accurate and complete information</li>
+                <li>Make payments on time as per the agreed schedule</li>
+                <li>Notify us of any changes to your contact information</li>
+                <li>Use loan funds for the stated purpose</li>
+            </ul>
+            
+            <h4>4. Interest and Fees</h4>
+            <p>Interest rates are determined based on your credit profile and loan type. All applicable fees will be disclosed before loan approval.</p>
+            
+            <h4>5. Default and Collections</h4>
+            <p>Late payments may result in additional fees and negative credit reporting. We reserve the right to pursue collection activities for defaulted loans.</p>
+            
+            <h4>6. Privacy and Data Protection</h4>
+            <p>We are committed to protecting your personal information in accordance with POPIA and other applicable privacy laws.</p>
+            
+            <div class="contact-info">
+                <h4>Questions About Terms?</h4>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>legal@oysterfinance.co.za</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Privacy Policy Popup -->
+<div id="privacy-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Privacy Policy</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p><strong>Last Updated:</strong> January 2025</p>
+            
+            <h4>Information We Collect</h4>
+            <ul>
+                <li>Personal identification information</li>
+                <li>Financial information for credit assessment</li>
+                <li>Contact information</li>
+                <li>Employment details</li>
+                <li>Website usage data</li>
+            </ul>
+            
+            <h4>How We Use Your Information</h4>
+            <ul>
+                <li>Process loan applications</li>
+                <li>Conduct credit assessments</li>
+                <li>Communicate about your account</li>
+                <li>Improve our services</li>
+                <li>Comply with legal requirements</li>
+            </ul>
+            
+            <h4>Information Sharing</h4>
+            <p>We may share your information with:</p>
+            <ul>
+                <li>Credit bureaus for credit reporting</li>
+                <li>Service providers who assist in our operations</li>
+                <li>Legal authorities when required by law</li>
+                <li>Third parties with your explicit consent</li>
+            </ul>
+            
+            <h4>Data Security</h4>
+            <p>We implement industry-standard security measures to protect your personal information, including encryption, secure servers, and regular security audits.</p>
+            
+            <h4>Your Rights</h4>
+            <p>Under POPIA, you have the right to access, correct, or delete your personal information. Contact us to exercise these rights.</p>
+            
+            <div class="contact-info">
+                <h4>Privacy Questions?</h4>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>privacy@oysterfinance.co.za</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Complaints Popup -->
+<div id="complaints-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Complaints Procedure</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>We take all complaints seriously and are committed to resolving them fairly and promptly.</p>
+            
+            <h4>How to Lodge a Complaint</h4>
+            <p><strong>Step 1:</strong> Contact our customer service team first</p>
+            <ul>
+                <li>Phone: +27 69 848 0097</li>
+                <li>Email: complaints@oysterfinance.co.za</li>
+                <li>WhatsApp: +27 69 848 0097</li>
+            </ul>
+            
+            <p><strong>Step 2:</strong> If unresolved, escalate to our Complaints Manager</p>
+            <ul>
+                <li>Email: complaints.manager@oysterfinance.co.za</li>
+                <li>Reference your original complaint number</li>
+            </ul>
+            
+            <h4>External Dispute Resolution</h4>
+            <p>If you're not satisfied with our resolution, you can contact:</p>
+            
+            <div class="contact-info">
+                <h4>National Credit Regulator (NCR)</h4>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>0860 627 627</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>complaints@ncr.org.za</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>www.ncr.org.za</span>
+                </div>
+            </div>
+            
+            <h4>Response Times</h4>
+            <ul>
+                <li>Acknowledgment: Within 24 hours</li>
+                <li>Initial response: Within 5 business days</li>
+                <li>Final resolution: Within 20 business days</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Popup -->
+<div id="blog-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Financial Insights Blog</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Stay informed with our latest articles on personal finance, business growth, and economic trends.</p>
+            
+            <h4>Recent Articles</h4>
+            <ul>
+                <li><strong>"5 Tips to Improve Your Credit Score in 2025"</strong> - Learn practical strategies to boost your creditworthiness</li>
+                <li><strong>"Small Business Funding Options in South Africa"</strong> - Explore various financing solutions for entrepreneurs</li>
+                <li><strong>"Understanding Interest Rates: Fixed vs Variable"</strong> - Make informed decisions about your loan terms</li>
+                <li><strong>"Emergency Fund vs Personal Loan: Which is Right for You?"</strong> - Compare your options for unexpected expenses</li>
+                <li><strong>"The Future of Digital Banking in South Africa"</strong> - Insights into fintech trends and innovations</li>
+            </ul>
+            
+            <h4>Categories</h4>
+            <ul>
+                <li>Personal Finance Tips</li>
+                <li>Business Growth Strategies</li>
+                <li>Credit Education</li>
+                <li>Economic Insights</li>
+                <li>Technology & Innovation</li>
+            </ul>
+            
+            <div class="contact-info">
+                <h4>Subscribe to Our Newsletter</h4>
+                <p>Get weekly financial tips and updates delivered to your inbox.</p>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>newsletter@oysterfinance.co.za</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loan Calculator Popup -->
+<div id="calculator-popup" class="popup-overlay">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>Loan Calculator</h3>
+            <a href="#" class="popup-close">&times;</a>
+        </div>
+        <div class="popup-body">
+            <p>Use our simple calculator to estimate your monthly payments and total loan cost.</p>
+            
+            <h4>How to Use the Calculator</h4>
+            <ol>
+                <li>Enter your desired loan amount</li>
+                <li>Select your preferred repayment period</li>
+                <li>Choose your loan type for accurate interest rates</li>
+                <li>View your estimated monthly payment</li>
+            </ol>
+            
+            <h4>Sample Calculations</h4>
+            <p><strong>Personal Loan Example:</strong></p>
+            <ul>
+                <li>Loan Amount: R50,000</li>
+                <li>Term: 36 months</li>
+                <li>Interest Rate: 18% per annum</li>
+                <li>Monthly Payment: ~R1,810</li>
+                <li>Total Cost: ~R65,160</li>
+            </ul>
+            
+            <p><strong>Business Loan Example:</strong></p>
+            <ul>
+                <li>Loan Amount: R200,000</li>
+                <li>Term: 60 months</li>
+                <li>Interest Rate: 15% per annum</li>
+                <li>Monthly Payment: ~R4,761</li>
+                <li>Total Cost: ~R285,660</li>
+            </ul>
+            
+            <h4>Important Notes</h4>
+            <ul>
+                <li>Calculations are estimates only</li>
+                <li>Actual rates may vary based on credit assessment</li>
+                <li>Additional fees may apply</li>
+                <li>Final terms subject to approval</li>
+            </ul>
+            
+            <div class="contact-info">
+                <h4>Ready to Apply?</h4>
+                <p>Get a personalized quote with our online application.</p>
+                <div class="contact-item">
+                    <i class="fas fa-calculator"></i>
+                    <span>Complete the application form above</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <!-- Apply Page -->
         <div class="page" id="apply">
             <div class="hero-section">
