@@ -1299,33 +1299,65 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to display application data
     function displayApplicationData(data) {
+        console.log('Application data:', data); // Debug log
+        
         // Populate application details with real data
         document.getElementById('detailName').textContent = data.fullName || 'Not provided';
         document.getElementById('detailId').textContent = data.idNumber || 'Not provided';
         document.getElementById('detailPhone').textContent = data.contactNumber || 'Not provided';
         document.getElementById('detailEmail').textContent = data.emailAddress || 'Not provided';
         
-        // Format loan amount
-        if (data.loanAmountRequest) {
-            let amount = data.loanAmountRequest.toString().replace(/[^0-9]/g, '');
-            document.getElementById('detailAmount').textContent = 'R' + parseInt(amount).toLocaleString();
+        // Format loan amount - check multiple possible field names
+        let loanAmount = data.loanAmountRequest || data.loanAmount || data.loanAmountValue;
+        if (loanAmount) {
+            let amount = loanAmount.toString().replace(/[^0-9]/g, '');
+            if (amount && parseInt(amount) > 0) {
+                document.getElementById('detailAmount').textContent = 'R' + parseInt(amount).toLocaleString();
+            } else {
+                document.getElementById('detailAmount').textContent = 'Not provided';
+            }
         } else {
             document.getElementById('detailAmount').textContent = 'Not provided';
         }
         
-        // Format loan term
-        if (data.loanTermSelect) {
-            document.getElementById('detailTerm').textContent = data.loanTermSelect + ' months';
+        // Format loan term - check multiple possible field names
+        let loanTerm = data.loanTermSelect || data.loanTerm || data.loanTermValue;
+        if (loanTerm) {
+            // Remove "Months" if it's already in the value
+            let termValue = loanTerm.toString().replace(/[^0-9]/g, '');
+            if (termValue && parseInt(termValue) > 0) {
+                document.getElementById('detailTerm').textContent = termValue + ' months';
+            } else {
+                document.getElementById('detailTerm').textContent = 'Not provided';
+            }
         } else {
             document.getElementById('detailTerm').textContent = 'Not provided';
         }
         
-        document.getElementById('detailPurpose').textContent = data.loanPurposeSelect || 'Not provided';
+        // Loan purpose - check multiple possible field names
+        let loanPurpose = data.loanPurposeSelect || data.loanPurpose || data.loanPurposeValue;
+        if (loanPurpose) {
+            // Convert hyphenated values to readable format
+            let purposeText = loanPurpose.toString();
+            if (purposeText.includes('-')) {
+                purposeText = purposeText.split('-').map(word => 
+                    word.charAt(0).toUpperCase() + word.slice(1)
+                ).join(' ');
+            }
+            document.getElementById('detailPurpose').textContent = purposeText;
+        } else {
+            document.getElementById('detailPurpose').textContent = 'Not provided';
+        }
         
         // Format monthly income
-        if (data.monthlyIncome) {
-            let income = data.monthlyIncome.toString().replace(/[^0-9]/g, '');
-            document.getElementById('detailIncome').textContent = 'R' + parseInt(income).toLocaleString();
+        let monthlyIncome = data.monthlyIncome || data.income;
+        if (monthlyIncome) {
+            let income = monthlyIncome.toString().replace(/[^0-9]/g, '');
+            if (income && parseInt(income) > 0) {
+                document.getElementById('detailIncome').textContent = 'R' + parseInt(income).toLocaleString();
+            } else {
+                document.getElementById('detailIncome').textContent = 'Not provided';
+            }
         } else {
             document.getElementById('detailIncome').textContent = 'Not provided';
         }
@@ -1336,6 +1368,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (data.submissionDate) {
             const date = new Date(data.submissionDate);
             document.getElementById('applicationDate').textContent = date.toLocaleDateString();
+        } else if (data.submissionTime) {
+            document.getElementById('applicationDate').textContent = data.submissionTime;
         } else {
             document.getElementById('applicationDate').textContent = new Date().toLocaleDateString();
         }
@@ -1346,7 +1380,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to update application status based on time
     function updateApplicationStatus(data) {
-        const applicationTime = data.submissionDate ? new Date(data.submissionDate).getTime() : new Date().getTime();
+        let applicationTime;
+        
+        // Try to get the application timestamp
+        if (data.submissionDate) {
+            applicationTime = new Date(data.submissionDate).getTime();
+        } else if (data.applicationTimestamp) {
+            applicationTime = data.applicationTimestamp;
+        } else {
+            // If no timestamp, use current time (new application)
+            applicationTime = new Date().getTime();
+        }
+        
         const currentTime = new Date().getTime();
         const timeDiff = currentTime - applicationTime;
         
