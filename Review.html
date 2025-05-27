@@ -1,365 +1,2146 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Finance HTML-5 Template </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Customer Reviews - Oyster Finance</title>
+<meta name="theme-color" content="#0066ff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
 
-		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/flaticon.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-   </head>
+:root {
+    --primary: #0066ff;
+    --primary-dark: #0055cc;
+    --primary-light: #4d94ff;
+    --primary-gradient: linear-gradient(135deg, #0066ff, #5e17eb);
+    --secondary: #e60023;
+    --secondary-dark: #cc0000;
+    --secondary-light: #ff3355;
+    --secondary-gradient: linear-gradient(135deg, #e60023, #ff5c8a);
+    --success: #00cc66;
+    --success-dark: #00aa55;
+    --success-light: #33dd87;
+    --success-gradient: linear-gradient(135deg, #00cc66, #00e673);
+    --warning: #ffcc00;
+    --warning-gradient: linear-gradient(135deg, #ffcc00, #ffaa00);
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --gray-light: #e9ecef;
+    --gray-dark: #343a40;
+    --body-bg: #f5f7fa;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --bottom-nav-height: 65px;
+    --header-height: 60px;
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-area-left: env(safe-area-inset-left, 0px);
+    --safe-area-right: env(safe-area-inset-right, 0px);
+}
 
-   <body>
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo.png" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area header-transparent">
-                <div class="main-header  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-10 col-lg-10 col-md-10">
-                            <div class="menu-main d-flex align-items-center justify-content-end">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-                                    <nav> 
-                                        <ul id="navigation">  
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li class="active"><a href="services.html">Services</a></li>
-                                            <li><a href="apply.html">Apply Now</a>
-                                                <ul class="submenu">
-                                                    <li><a href="apply.html">Apply Now</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                            <li><a href="Review.html">Reviews</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <div class="header-right-btn f-right d-none d-lg-block">
-                                    <a href="#" class="btn header-btn">+27678998831</a>
-                                </div>
-                            </div>
-                            </div>   
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-        <!-- Header End -->
-    </header>
-    <main>
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: var(--body-bg);
+    color: var(--dark);
+    position: fixed;
+    overscroll-behavior: none;
+}
 
-        <!-- Hero Start-->
-        <div class="hero-area2  slider-height2 hero-overly2 d-flex align-items-center ">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap text-center pt-50">
-                            <h2>Customer Reviews</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Hero End -->
-        <style>
-    .reviews-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-        padding: 20px;
-        background: rgba(0,0,0,0.7);
+/* App Container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* App Header */
+.app-header {
+    height: calc(var(--header-height) + var(--safe-area-top));
+    padding-top: var(--safe-area-top);
+    background: var(--primary-gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: max(16px, var(--safe-area-left));
+    padding-right: max(16px, var(--safe-area-right));
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+
+.logo-container img {
+    height: 32px;
+    width: auto;
+    margin-right: 10px;
+}
+
+.app-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.header-icon:active {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+/* App Content */
+.app-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+    height: 40vh;
+    max-height: 350px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-gradient);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E"),
+                     radial-gradient(circle at 25% 25%, rgba(94, 23, 235, 0.1) 0%, transparent 50%),
+                     radial-gradient(circle at 75% 75%, rgba(0, 102, 255, 0.1) 0%, transparent 50%);
+    z-index: 2;
+    opacity: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Card Styles */
+.card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 0 20px 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(0, 102, 255, 0.05);
+    z-index: 0;
+}
+
+.card:active {
+    transform: scale(0.98);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.card-title.with-line::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+}
+
+/* Review Card Styles */
+.review-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card:active {
+    transform: scale(0.98);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.review-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 80px;
+    color: rgba(0, 102, 255, 0.05);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.review-rating {
+    color: var(--warning);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.review-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: var(--gray-dark);
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+}
+
+.review-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0, 102, 255, 0.2);
+}
+
+.review-info h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 5px;
+    letter-spacing: -0.5px;
+}
+
+.review-info span {
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-date {
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.review-amount {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+    background: rgba(0, 102, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+/* Stats Section */
+.stats-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 30px;
+    gap: 10px;
+}
+
+.stat-box {
+    background: var(--secondary-gradient);
+    border-radius: 20px;
+    padding: 20px 15px;
+    color: white;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 10px 20px rgba(230, 0, 35, 0.15);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.stat-box:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 15px rgba(230, 0, 35, 0.1);
+}
+
+.stat-box::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.stat-box::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: -15px;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+}
+
+.stat-box h3 {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-box p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+}
+
+/* Filter Section */
+.filter-section {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 20px 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.filter-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--gray-light);
+    background: white;
+    color: var(--gray-dark);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: var(--primary);
+}
+
+.filter-btn:active {
+    transform: scale(0.95);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin: 30px 20px 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: 3px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--bottom-nav-height) + var(--safe-area-bottom));
+    padding-bottom: var(--safe-area-bottom);
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    color: var(--gray);
+    transition: all 0.3s;
+    cursor: pointer;
+    min-width: 60px;
+    max-width: 80px;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-item.active {
+    color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+.nav-item i {
+    font-size: 22px;
+    margin-bottom: 6px;
+    transition: transform 0.3s;
+}
+
+.nav-item.active i {
+    transform: scale(1.2);
+}
+
+.nav-item span {
+    font-size: 12px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+}
+
+/* WhatsApp Button */
+#whatsapp-button {
+    position: fixed;
+    bottom: calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 20px);
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: pulse 2s infinite;
+    border: none;
+    outline: none;
+}
+
+#whatsapp-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#whatsapp-button i {
+    font-size: 30px;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.mt-20 { margin-top: 20px; }
+.hidden { display: none; }
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px;
     }
+    
+    .hero-subtitle {
+        font-size: 14px;
+    }
+    
+    .filter-buttons {
+        justify-content: center;
+    }
+    
     .review-card {
-        background: rgba(0,0,0,0.5);
         padding: 20px;
-        border-radius: 10px;
-        color: white;
     }
-    .review-name {
-        color: #00FF00;
-        margin: 10px 0;
-    }
-    .review-text {
-        margin: 0;
-        line-height: 1.5;
-    }
-    .rating {
-        color: gold;
-        font-size: 1.2em;
-    }
+}
 </style>
-
-<div class="reviews-container">
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Lerato Mokoena</h3>
-        <p class="review-text">"Oyster Finance made my dream a reality! I needed 50,000 for my business expansion, and within 24 hours, the funds were in my account. The process was smooth, and their support team was incredibly helpful. Highly recommended!"</p>
+</head>
+<body>
+<div class="app-container">
+    <!-- App Header -->
+    <div class="app-header">
+        <div class="logo-container">
+            <img src="img/logo.png" alt="Oyster Finance">
+        </div>
+        <h1>Customer Reviews</h1>
+        <div class="header-icon" onclick="window.location.href='index.html'">
+            <i class="fas fa-home"></i>
+        </div>
     </div>
 
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Sibusiso Ndlovu</h3>
-        <p class="review-text">"I was in urgent need of 35,000 for medical expenses, and I honestly didn't think I'd qualify. Oyster Finance proved me wrong! Their team guided me, and I had the money within a day. They truly care about their clients."</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Thandiwe Khumalo</h3>
-        <p class="review-text">"I was skeptical at first, but Oyster Finance came through for me! I secured 45,000 to cover my tuition fees, and the repayment terms were fair. This company is a lifesaver!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Bongani Dlamini</h3>
-        <p class="review-text">"Getting a loan has never been this easy! I applied for 28,000 to renovate my home, and within hours, I got approval. The customer service was professional, and the interest rates were reasonable."</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Johan van der Merwe</h3>
-        <p class="review-text">"I needed 100,000 to expand my farm, and Oyster Finance was the only lender that truly understood my needs. Quick, professional, and reliable!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Annelize Botha</h3>
-        <p class="review-text">"I applied for 25,000 to help my daughter with university fees, and Oyster Finance made it happen effortlessly. The whole process was stress-free!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Pieter de Villiers</h3>
-        <p class="review-text">"When I needed 85,000 for new equipment in my workshop, Oyster Finance was my go-to. The interest rates were fair, and the service was excellent."</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Zanele Madonsela</h3>
-        <p class="review-text">"Thanks to Oyster Finance, I was able to purchase much-needed equipment for my small salon. They approved me for 60,000, and the repayment plan was flexible. Excellent service!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Mandla Sithole</h3>
-        <p class="review-text">"I needed 40,000 to pay off some urgent bills, and Oyster Finance delivered. The whole process was stress-free, and I was kept informed every step of the way. Definitely a trustworthy lender!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Nomsa Ngubane</h3>
-        <p class="review-text">"After being turned down by multiple banks, Oyster Finance gave me hope. I secured 75,000 to invest in my business, and I couldn't be happier with their service. Thank you, Oyster!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Kabelo Moloi</h3>
-        <p class="review-text">"My car broke down unexpectedly, and I needed 30,000 for repairs. Oyster Finance helped me when I needed it most. The application was easy, and the funds arrived quickly!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Tebogo Seabi</h3>
-        <p class="review-text">"I got 55,000 from Oyster Finance to help my mother with her medical treatment. The process was smooth, and they were very transparent. I highly recommend them!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Nokuthula Zulu</h3>
-        <p class="review-text">"My wedding was almost canceled due to lack of funds, but Oyster Finance saved the day! I received 80,000 just in time, and the repayment terms were surprisingly manageable. Forever grateful!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Mareli Coetzee</h3>
-        <p class="review-text">"Oyster Finance is truly a game-changer! I secured 45,000 to renovate my home, and I received my approval within a few hours. Highly recommended!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Francois Steyn</h3>
-        <p class="review-text">"I was in desperate need of 160,000 to buy stock for my business, and Oyster Finance did not disappoint. Their efficiency and professionalism were top-tier!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Jason Mitchell</h3>
-        <p class="review-text">"I was skeptical at first, but Oyster Finance proved to be the real deal. They approved me for 90,000, and the money arrived sooner than expected. Great service!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Sarah Daniels</h3>
-        <p class="review-text">"I got a 120,000 loan from Oyster Finance for my restaurant expansion. The whole process was straightforward, and their team was very supportive. Highly recommended!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Michael Carter</h3>
-        <p class="review-text">"Oyster Finance made it easy for me to get 70,000 for my home renovation. The application was quick, and there were no hidden fees. I’ll definitely use them again!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Emma Robertson</h3>
-        <p class="review-text">"I was able to secure 38,000 from Oyster Finance to cover urgent medical expenses. The interest rates were reasonable, and the repayment plan suited my budget perfectly!"</p>
-    </div>
-
-    <div class="review-card">
-        <div class="rating">★★★★★</div>
-        <h3 class="review-name">Daniel Foster</h3>
-        <p class="review-text">"I needed 150,000 to kickstart my new venture, and Oyster Finance made it possible. The approval process was fast, and the service was excellent. They are truly the best!"</p>
-    </div>
-</div>
-     </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-area">
-            <div class="container">
-               <div class="footer-top footer-padding">
-                    <div class="row justify-content-between">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="single-footer-caption mb-30">
-                                    <!-- logo -->
-                                    <div class="footer-logo">
-                                        <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                    </div>
-                                    <div class="footer-pera">
-                                        <p>Heaven fruitful</p>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Quick Link</h4>
-                                    <ul>
-                                        <li><a href="https://www.hb.vc" target="_blank">About</a></li>
-                                        <li><a href="https://www.hb.vc" target="_blank">ontact</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>New Products</h4>
-                                    <ul>
-                                        <li><a href="https://www.hb.vc" target="_blank">Back to Top</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Support</h4>
-                                    <ul>
-                                        <li><a href="https://www.hb.vc" target="_blank">Q&A</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-                <div class="footer-bottom">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | OYSTER FINANCE made with <i class="fa fa-heart"
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4">
-                            <!-- Footer Social -->
-                            <div class="footer-social f-right">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-               </div>
+    <!-- App Content -->
+    <div class="app-content">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <h1 class="hero-title">What Our Customers Say</h1>
+                <p class="hero-subtitle">Real reviews from real customers who trust Oyster Finance</p>
             </div>
         </div>
-        <!-- Footer End-->
-    </footer>
-    <!-- Scroll Up -->
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-box">
+                <h3>4.8/5</h3>
+                <p>⭐ Average Rating</p>
+            </div>
+            <div class="stat-box">
+                <h3>80+</h3>
+                <p>📝 Total Reviews</p>
+            </div>
+            <div class="stat-box">
+                <h3>98%</h3>
+                <p>👍 Satisfaction Rate</p>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-title">Filter Reviews</div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Reviews</button>
+                <button class="filter-btn" data-filter="2025">2025</button>
+                <button class="filter-btn" data-filter="2024">2024</button>
+                <button class="filter-btn" data-filter="2023">2023</button>
+                <button class="filter-btn" data-filter="2022">2022</button>
+                <button class="filter-btn" data-filter="2021">2021</button>
+                <button class="filter-btn" data-filter="2020">2020</button>
+                <button class="filter-btn" data-filter="2019">2019</button>
+            </div>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2 class="section-title">Recent Reviews (May 2025)</h2>
+            <p class="section-subtitle">Our latest customer testimonials</p>
+        </div>
+
+        <!-- May 2025 Reviews -->
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 5, 2025 - 10:23 AM</div>
+                <div class="review-amount">R25,000</div>
+            </div>
+            <div class="review-text">"Oyster Finance made my loan process so simple and smooth. Professional and very helpful throughout!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TN</div>
+                <div class="review-info">
+                    <h5>Thabo Nkosi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 8, 2025 - 1:47 PM</div>
+                <div class="review-amount">R180,000</div>
+            </div>
+            <div class="review-text">"I never imagined getting a loan would be this easy. The team at Oyster Finance are amazing and truly supportive."</div>
+            <div class="review-author">
+                <div class="review-avatar">LM</div>
+                <div class="review-info">
+                    <h5>Lerato Mokoena</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 10, 2025 - 9:15 AM</div>
+                <div class="review-amount">R50,000</div>
+            </div>
+            <div class="review-text">"Quick, reliable, and professional! Thank you Oyster Finance for helping me when I needed it most."</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Sipho Dlamini</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 12, 2025 - 3:12 PM</div>
+                <div class="review-amount">R320,000</div>
+            </div>
+            <div class="review-text">"Their process is straightforward, and their staff are incredibly helpful. Highly recommend Oyster Finance!"</div>
+            <div class="review-author">
+                <div class="review-avatar">ZK</div>
+                <div class="review-info">
+                    <h5>Zanele Khumalo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 14, 2025 - 11:05 AM</div>
+                <div class="review-amount">R90,000</div>
+            </div>
+            <div class="review-text">"Oyster Finance exceeded my expectations. Fast approval and professional service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">BS</div>
+                <div class="review-info">
+                    <h5>Bongani Sithole</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 16, 2025 - 4:30 PM</div>
+                <div class="review-amount">R7,500</div>
+            </div>
+            <div class="review-text">"Needed a small loan fast—Oyster Finance delivered with no hassle at all. Thanks a million!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NG</div>
+                <div class="review-info">
+                    <h5>Nandipha Gcabashe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 18, 2025 - 8:45 AM</div>
+                <div class="review-amount">R470,000</div>
+            </div>
+            <div class="review-text">"From application to payout, the process was seamless. Great customer service too!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TM</div>
+                <div class="review-info">
+                    <h5>Themba Mhlongo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 21, 2025 - 2:18 PM</div>
+                <div class="review-amount">R110,000</div>
+            </div>
+            <div class="review-text">"I was nervous about getting a loan, but Oyster made me feel comfortable and secure. Amazing service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">PM</div>
+                <div class="review-info">
+                    <h5>Puleng Molefe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 24, 2025 - 7:02 PM</div>
+                <div class="review-amount">R30,000</div>
+            </div>
+            <div class="review-text">"Helpful from start to finish. Great communication and fast turnaround!"</div>
+            <div class="review-author">
+                <div class="review-avatar">KN</div>
+                <div class="review-info">
+                    <h5>Kagiso Ncube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 26, 2025 - 12:00 PM</div>
+                <div class="review-amount">R220,000</div>
+            </div>
+            <div class="review-text">"Highly professional and very easy process. Oyster Finance is the real deal!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TR</div>
+                <div class="review-info">
+                    <h5>Tumi Ramaphosa</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Header for April 2025 -->
+        <div class="section-header">
+            <h2 class="section-title">April 2025 Reviews</h2>
+            <p class="section-subtitle">Customer feedback from April</p>
+        </div>
+
+        <!-- April 2025 Reviews -->
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 2, 2025 - 10:11 AM</div>
+                <div class="review-amount">R15,000</div>
+            </div>
+            <div class="review-text">"Oyster Finance is incredibly efficient. The service was top-tier!"</div>
+            <div class="review-author">
+                <div class="review-avatar">SZ</div>
+                <div class="review-info">
+                    <h5>Siyanda Zulu</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 4, 2025 - 3:44 PM</div>
+                <div class="review-amount">R345,000</div>
+            </div>
+            <div class="review-text">"I appreciate how transparent and friendly the whole team was. Definitely recommend them!"</div>
+            <div class="review-author">
+                <div class="review-avatar">AN</div>
+                <div class="review-info">
+                    <h5>Ayanda Ngwenya</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 6, 2025 - 11:00 AM</div>
+                <div class="review-amount">R65,000</div>
+            </div>
+            <div class="review-text">"Oyster Finance made everything stress-free and quick. Fantastic service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">MB</div>
+                <div class="review-info">
+                    <h5>Mpho Baloyi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 9, 2025 - 1:30 PM</div>
+                <div class="review-amount">R12,000</div>
+            </div>
+            <div class="review-text">"Such an easy process and great support from the staff. Thank you Oyster!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TM</div>
+                <div class="review-info">
+                    <h5>Tshepo Madonsela</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 11, 2025 - 5:55 PM</div>
+                <div class="review-amount">R410,000</div>
+            </div>
+            <div class="review-text">"They treated me with respect and made the process so smooth. Great job!"</div>
+            <div class="review-author">
+                <div class="review-avatar">HS</div>
+                <div class="review-info">
+                    <h5>Hlengiwe Shabalala</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 15, 2025 - 9:40 AM</div>
+                <div class="review-amount">R28,000</div>
+            </div>
+            <div class="review-text">"Best finance experience I've ever had. Everything was explained clearly."</div>
+            <div class="review-author">
+                <div class="review-avatar">LM</div>
+                <div class="review-info">
+                    <h5>Lwazi Maseko</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 18, 2025 - 2:07 PM</div>
+                <div class="review-amount">R375,000</div>
+            </div>
+            <div class="review-text">"A friend recommended them and I'm so glad I listened. Oyster is excellent!"</div>
+            <div class="review-author">
+                <div class="review-avatar">BM</div>
+                <div class="review-info">
+                    <h5>Boitumelo Morake</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 21, 2025 - 8:30 AM</div>
+                <div class="review-amount">R200,000</div>
+            </div>
+            <div class="review-text">"Very impressed with their professionalism. Got the funds exactly when I needed them."</div>
+            <div class="review-author">
+                <div class="review-avatar">NN</div>
+                <div class="review-info">
+                    <h5>Nokuthula Nene</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 25, 2025 - 4:20 PM</div>
+                <div class="review-amount">R18,000</div>
+            </div>
+            <div class="review-text">"Fast, efficient, and very helpful. Thanks for making it so easy, Oyster Finance!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TD</div>
+                <div class="review-info">
+                    <h5>Thuli Dube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 28, 2025 - 11:18 AM</div>
+                <div class="review-amount">R285,000</div>
+            </div>
+            <div class="review-text">"I'm so grateful for the help I received. Highly professional and responsive."</div>
+            <div class="review-author">
+                <div class="review-avatar">SM</div>
+                <div class="review-info">
+                    <h5>Sabelo Mthembu</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Header for March 2025 -->
+        <div class="section-header">
+            <h2 class="section-title">March 2025 Reviews</h2>
+            <p class="section-subtitle">Customer testimonials from March</p>
+        </div>
+
+        <!-- March 2025 Reviews -->
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 3, 2025 - 9:50 AM</div>
+                <div class="review-amount">R140,000</div>
+            </div>
+            <div class="review-text">"Simple, quick, and trustworthy. What more could you ask for?"</div>
+            <div class="review-author">
+                <div class="review-avatar">PM</div>
+                <div class="review-info">
+                    <h5>Precious Maluleka</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 5, 2025 - 2:39 PM</div>
+                <div class="review-amount">R350,000</div>
+            </div>
+            <div class="review-text">"I got my loan faster than I expected. The Oyster team was great!"</div>
+            <div class="review-author">
+                <div class="review-avatar">VN</div>
+                <div class="review-info">
+                    <h5>Vusi Ntuli</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 8, 2025 - 12:10 PM</div>
+                <div class="review-amount">R22,000</div>
+            </div>
+            <div class="review-text">"Highly impressed with their professionalism and efficiency. Well done!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NM</div>
+                <div class="review-info">
+                    <h5>Nomvula Mbatha</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 11, 2025 - 6:45 PM</div>
+                <div class="review-amount">R95,000</div>
+            </div>
+            <div class="review-text">"Such a great experience. They made everything feel so easy!"</div>
+            <div class="review-author">
+                <div class="review-avatar">LR</div>
+                <div class="review-info">
+                    <h5>Lethabo Radebe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 14, 2025 - 10:05 AM</div>
+                <div class="review-amount">R430,000</div>
+            </div>
+            <div class="review-text">"The customer service alone deserves 5 stars. Great job Oyster Finance!"</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Simphiwe Dube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 17, 2025 - 3:00 PM</div>
+                <div class="review-amount">R60,000</div>
+            </div>
+            <div class="review-text">"Professional and friendly. Got my loan without any issues."</div>
+            <div class="review-author">
+                <div class="review-avatar">KM</div>
+                <div class="review-info">
+                    <h5>Karabo Moeketsi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 20, 2025 - 8:33 AM</div>
+                <div class="review-amount">R300,000</div>
+            </div>
+            <div class="review-text">"Quick approval and great communication. Super helpful!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NG</div>
+                <div class="review-info">
+                    <h5>Nhlanhla Gumbi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 23, 2025 - 2:15 PM</div>
+                <div class="review-amount">R19,500</div>
+            </div>
+            <div class="review-text">"Great experience overall. I'd recommend Oyster to anyone."</div>
+            <div class="review-author">
+                <div class="review-avatar">ZM</div>
+                <div class="review-info">
+                    <h5>Zodwa Mokoena</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 26, 2025 - 5:20 PM</div>
+                <div class="review-amount">R475,000</div>
+            </div>
+            <div class="review-text">"Really smooth process from start to finish. Big thanks to the Oyster team!"</div>
+            <div class="review-author">
+                <div class="review-avatar">MK</div>
+                <div class="review-info">
+                    <h5>Mandla Khosa</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 29, 2025 - 7:00 PM</div>
+                <div class="review-amount">R8,000</div>
+            </div>
+            <div class="review-text">"Needed funds urgently and Oyster came through like a pro. Thank you!"</div>
+            <div class="review-author">
+                <div class="review-avatar">RS</div>
+                <div class="review-info">
+                    <h5>Refilwe Sebele</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Header for Historical Reviews -->
+        <div class="section-header">
+            <h2 class="section-title">Historical Reviews (2019-2024)</h2>
+            <p class="section-subtitle">Years of satisfied customers</p>
+        </div>
+
+        <!-- Historical Reviews -->
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">January 2, 2022 - 6:21 PM</div>
+                <div class="review-amount">R344,861</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">PK</div>
+                <div class="review-info">
+                    <h5>Puleng Khosa</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 24, 2022 - 3:34 PM</div>
+                <div class="review-amount">R34,080</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">NN</div>
+                <div class="review-info">
+                    <h5>Nomvula Nkosi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 13, 2025 - 8:37 AM</div>
+                <div class="review-amount">R261,396</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">AN</div>
+                <div class="review-info">
+                    <h5>Ayanda Ncube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">June 9, 2020 - 3:59 PM</div>
+                <div class="review-amount">R88,952</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Simphiwe Dube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 23, 2021 - 10:28 AM</div>
+                <div class="review-amount">R267,313</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Siyanda Dlamini</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">August 10, 2023 - 11:14 AM</div>
+                <div class="review-amount">R379,598</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">NR</div>
+                <div class="review-info">
+                    <h5>Nokuthula Radebe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">February 27, 2022 - 11:30 AM</div>
+                <div class="review-amount">R74,409</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">RM</div>
+                <div class="review-info">
+                    <h5>Refilwe Moeketsi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2019">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">December 18, 2019 - 11:00 AM</div>
+                <div class="review-amount">R282,415</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">VK</div>
+                <div class="review-info">
+                    <h5>Vusi Khumalo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">January 18, 2020 - 12:10 PM</div>
+                <div class="review-amount">R241,887</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">NS</div>
+                <div class="review-info">
+                    <h5>Nokuthula Sebele</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">October 1, 2025 - 1:18 PM</div>
+                <div class="review-amount">R337,589</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">MM</div>
+                <div class="review-info">
+                    <h5>Mandla Madonsela</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 10, 2020 - 12:52 PM</div>
+                <div class="review-amount">R271,941</div>
+            </div>
+            <div class="review-text">"I was amazed by how easy it was to apply for a loan through Oyster Finance. Their team was extremely professional and guided me through every step of the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">PZ</div>
+                <div class="review-info">
+                    <h5>Precious Zulu</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">August 10, 2021 - 5:27 PM</div>
+                <div class="review-amount">R307,980</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">KM</div>
+                <div class="review-info">
+                    <h5>Karabo Mhlongo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 17, 2021 - 9:24 AM</div>
+                <div class="review-amount">R172,805</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">ZB</div>
+                <div class="review-info">
+                    <h5>Zanele Baloyi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">February 10, 2020 - 5:28 PM</div>
+                <div class="review-amount">R447,093</div>
+            </div>
+            <div class="review-text">"Great service and very responsive team. I was able to get my loan without any delays, and everything was handled professionally."</div>
+            <div class="review-author">
+                <div class="review-avatar">BN</div>
+                <div class="review-info">
+                    <h5>Boitumelo Ngwenya</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 28, 2022 - 3:58 PM</div>
+                <div class="review-amount">R336,239</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">TM</div>
+                <div class="review-info">
+                    <h5>Tshepo Morake</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">November 23, 2023 - 1:11 PM</div>
+                <div class="review-amount">R101,746</div>
+            </div>
+            <div class="review-text">"I've dealt with other finance companies before, but none as straightforward and professional as Oyster Finance. Top-notch service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">TG</div>
+                <div class="review-info">
+                    <h5>Thembi Gumbi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 22, 2025 - 4:00 PM</div>
+                <div class="review-amount">R467,258</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">NN</div>
+                <div class="review-info">
+                    <h5>Nhlanhla Ntuli</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">June 26, 2022 - 11:03 AM</div>
+                <div class="review-amount">R337,237</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">TN</div>
+                <div class="review-info">
+                    <h5>Tumi Nene</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">June 6, 2023 - 9:55 AM</div>
+                <div class="review-amount">R218,901</div>
+            </div>
+            <div class="review-text">"From start to finish, the team at Oyster Finance made me feel comfortable and supported. I'm very happy with how they handled my loan request."</div>
+            <div class="review-author">
+                <div class="review-avatar">SR</div>
+                <div class="review-info">
+                    <h5>Sabelo Ramaphosa</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2019">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 11, 2019 - 1:39 PM</div>
+                <div class="review-amount">R244,382</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">ZM</div>
+                <div class="review-info">
+                    <h5>Zodwa Madonsela</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">December 14, 2021 - 4:45 PM</div>
+                <div class="review-amount">R312,077</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">LS</div>
+                <div class="review-info">
+                    <h5>Lethabo Shabalala</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">September 7, 2023 - 2:15 PM</div>
+                <div class="review-amount">R161,899</div>
+            </div>
+            <div class="review-text">"I've dealt with other finance companies before, but none as straightforward and professional as Oyster Finance. Top-notch service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NG</div>
+                <div class="review-info">
+                    <h5>Nandipha Gcabashe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 2, 2025 - 1:59 PM</div>
+                <div class="review-amount">R288,071</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">HN</div>
+                <div class="review-info">
+                    <h5>Hlengiwe Ncube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">October 4, 2023 - 10:41 AM</div>
+                <div class="review-amount">R125,634</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">SM</div>
+                <div class="review-info">
+                    <h5>Sipho Molefe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">November 3, 2020 - 3:00 PM</div>
+                <div class="review-amount">R319,170</div>
+            </div>
+            <div class="review-text">"Great service and very responsive team. I was able to get my loan without any delays, and everything was handled professionally."</div>
+            <div class="review-author">
+                <div class="review-avatar">MG</div>
+                <div class="review-info">
+                    <h5>Mpho Gumbi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 16, 2025 - 11:44 AM</div>
+                <div class="review-amount">R105,468</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">ZN</div>
+                <div class="review-info">
+                    <h5>Zanele Ntuli</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">February 17, 2023 - 9:30 AM</div>
+                <div class="review-amount">R408,997</div>
+            </div>
+            <div class="review-text">"From start to finish, the team at Oyster Finance made me feel comfortable and supported. I'm very happy with how they handled my loan request."</div>
+            <div class="review-author">
+                <div class="review-avatar">TM</div>
+                <div class="review-info">
+                    <h5>Thabo Mbatha</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">August 26, 2022 - 10:12 AM</div>
+                <div class="review-amount">R177,032</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">NS</div>
+                <div class="review-info">
+                    <h5>Nomvula Sebele</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 8, 2021 - 2:18 PM</div>
+                <div class="review-amount">R364,544</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Sabelo Dlamini</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">October 25, 2020 - 9:17 AM</div>
+                <div class="review-amount">R199,867</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">LM</div>
+                <div class="review-info">
+                    <h5>Lerato Madonsela</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">June 9, 2025 - 1:23 PM</div>
+                <div class="review-amount">R128,902</div>
+            </div>
+            <div class="review-text">"I've dealt with other finance companies before, but none as straightforward and professional as Oyster Finance. Top-notch service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">KM</div>
+                <div class="review-info">
+                    <h5>Kagiso Mokoena</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 15, 2023 - 11:44 AM</div>
+                <div class="review-amount">R491,701</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">AM</div>
+                <div class="review-info">
+                    <h5>Ayanda Mhlongo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">September 4, 2021 - 4:06 PM</div>
+                <div class="review-amount">R226,518</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">VM</div>
+                <div class="review-info">
+                    <h5>Vusi Morake</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 15, 2020 - 9:29 AM</div>
+                <div class="review-amount">R118,385</div>
+            </div>
+            <div class="review-text">"From start to finish, the team at Oyster Finance made me feel comfortable and supported. I'm very happy with how they handled my loan request."</div>
+            <div class="review-author">
+                <div class="review-avatar">PM</div>
+                <div class="review-info">
+                    <h5>Puleng Moeketsi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2019">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">November 11, 2019 - 10:56 AM</div>
+                <div class="review-amount">R253,307</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NZ</div>
+                <div class="review-info">
+                    <h5>Nhlanhla Zulu</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">February 5, 2025 - 3:40 PM</div>
+                <div class="review-amount">R213,647</div>
+            </div>
+            <div class="review-text">"I was amazed by how easy it was to apply for a loan through Oyster Finance. Their team was extremely professional and guided me through every step of the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">BM</div>
+                <div class="review-info">
+                    <h5>Boitumelo Mbatha</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 21, 2023 - 8:22 AM</div>
+                <div class="review-amount">R98,700</div>
+            </div>
+            <div class="review-text">"Great service and very responsive team. I was able to get my loan without any delays, and everything was handled professionally."</div>
+            <div class="review-author">
+                <div class="review-avatar">SD</div>
+                <div class="review-info">
+                    <h5>Sabelo Dube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 13, 2022 - 10:01 AM</div>
+                <div class="review-amount">R310,850</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">TN</div>
+                <div class="review-info">
+                    <h5>Thuli Nkosi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">June 12, 2021 - 1:47 PM</div>
+                <div class="review-amount">R360,009</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">SN</div>
+                <div class="review-info">
+                    <h5>Simphiwe Nene</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">March 21, 2020 - 2:11 PM</div>
+                <div class="review-amount">R276,832</div>
+            </div>
+            <div class="review-text">"I've dealt with other finance companies before, but none as straightforward and professional as Oyster Finance. Top-notch service!"</div>
+            <div class="review-author">
+                <div class="review-avatar">LS</div>
+                <div class="review-info">
+                    <h5>Lwazi Shabalala</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2019">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">July 17, 2019 - 3:17 PM</div>
+                <div class="review-amount">R145,607</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">KR</div>
+                <div class="review-info">
+                    <h5>Karabo Radebe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">August 12, 2025 - 10:25 AM</div>
+                <div class="review-amount">R412,229</div>
+            </div>
+            <div class="review-text">"Great service and very responsive team. I was able to get my loan without any delays, and everything was handled professionally."</div>
+            <div class="review-author">
+                <div class="review-avatar">SM</div>
+                <div class="review-info">
+                    <h5>Sipho Madonsela</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">December 9, 2023 - 2:40 PM</div>
+                <div class="review-amount">R174,334</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">HM</div>
+                <div class="review-info">
+                    <h5>Hlengiwe Molefe</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">April 16, 2022 - 3:11 PM</div>
+                <div class="review-amount">R332,010</div>
+            </div>
+            <div class="review-text">"I was amazed by how easy it was to apply for a loan through Oyster Finance. Their team was extremely professional and guided me through every step of the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">TB</div>
+                <div class="review-info">
+                    <h5>Tshepo Baloyi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2021">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">October 10, 2021 - 4:35 PM</div>
+                <div class="review-amount">R299,405</div>
+            </div>
+            <div class="review-text">"From start to finish, the team at Oyster Finance made me feel comfortable and supported. I'm very happy with how they handled my loan request."</div>
+            <div class="review-author">
+                <div class="review-avatar">AG</div>
+                <div class="review-info">
+                    <h5>Ayanda Gumbi</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2020">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">August 2, 2020 - 11:52 AM</div>
+                <div class="review-amount">R154,782</div>
+            </div>
+            <div class="review-text">"Truly the best lending experience I've had. Everything was transparent and the customer service was excellent from start to finish."</div>
+            <div class="review-author">
+                <div class="review-avatar">ZM</div>
+                <div class="review-info">
+                    <h5>Zanele Mokoena</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2019">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">September 6, 2019 - 9:00 AM</div>
+                <div class="review-amount">R293,216</div>
+            </div>
+            <div class="review-text">"Fantastic experience! The support staff at Oyster Finance were very knowledgeable and made sure I understood all the terms clearly before proceeding."</div>
+            <div class="review-author">
+                <div class="review-avatar">TN</div>
+                <div class="review-info">
+                    <h5>Thabo Ncube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2025">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">January 14, 2025 - 12:18 PM</div>
+                <div class="review-amount">R185,529</div>
+            </div>
+            <div class="review-text">"Getting a loan with Oyster Finance was quick and stress-free. Their staff answered all my questions and kept me updated throughout the process."</div>
+            <div class="review-author">
+                <div class="review-avatar">NM</div>
+                <div class="review-info">
+                    <h5>Nokuthula Maseko</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2023">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">May 28, 2023 - 1:33 PM</div>
+                <div class="review-amount">R397,345</div>
+            </div>
+            <div class="review-text">"I applied for a loan and within hours, everything was sorted. Their process is super efficient and their team is very helpful and polite."</div>
+            <div class="review-author">
+                <div class="review-avatar">LD</div>
+                <div class="review-info">
+                    <h5>Lethabo Dube</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-card" data-year="2022">
+            <div class="review-rating">★★★★★</div>
+            <div class="review-meta">
+                <div class="review-date">November 22, 2022 - 10:06 AM</div>
+                <div class="review-amount">R120,137</div>
+            </div>
+            <div class="review-text">"Oyster Finance really helped me out during a tight spot. The application process was smooth and the disbursement was quick. Highly recommend!"</div>
+            <div class="review-author">
+                <div class="review-avatar">NK</div>
+                <div class="review-info">
+                    <h5>Nandipha Khumalo</h5>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="card">
+            <div class="card-title with-line text-center">Ready to Join Our Happy Customers?</div>
+            <p class="text-center mb-20">Experience the same excellent service that our customers rave about. Apply for your loan today and see why Oyster Finance is South Africa's trusted lending partner.</p>
+            <div style="text-align: center;">
+                <a href="index.html" style="display: inline-block; background: var(--primary-gradient); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; margin: 10px; box-shadow: 0 5px 15px rgba(0, 102, 255, 0.3);">Apply Now</a>
+                <a href="tel:+27698480097" style="display: inline-block; background: var(--success-gradient); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: 700; margin: 10px; box-shadow: 0 5px 15px rgba(0, 204, 102, 0.3);">Call Us</a>
+            </div>
+        </div>
     </div>
 
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="index.html#apply" class="nav-item">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>Apply</span>
+        </a>
+        <a href="index.html#loans" class="nav-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <span>Loans</span>
+        </a>
+        <div class="nav-item active">
+            <i class="fas fa-star"></i>
+            <span>Reviews</span>
+        </div>
+        <a href="contact.html" class="nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+    </div>
 
-    <!-- JS here -->
-		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <!-- WhatsApp Button -->
+    <button id="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+</div>
 
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
-		<!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-		<!-- Nice-select, sticky -->
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
+<!-- JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const reviewCards = document.querySelectorAll('.review-card');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Update active filter button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const filterYear = this.getAttribute('data-filter');
+            
+            // Show/hide review cards based on filter
+            reviewCards.forEach(card => {
+                if (filterYear === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardYear = card.getAttribute('data-year');
+                    if (cardYear === filterYear) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Scroll to top of reviews
+            document.querySelector('.app-content').scrollTo({
+                top: 300,
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    // WhatsApp Button
+    document.getElementById('whatsapp-button').addEventListener('click', function() {
+        window.open('https://wa.me/+27698480097', '_blank');
+    });
+    
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add scroll to top functionality
+    const appContent = document.querySelector('.app-content');
+    let scrollToTopBtn = null;
+    
+    appContent.addEventListener('scroll', function() {
+        const scrollTop = this.scrollTop;
         
-        <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
-        
-    </body>
+        if (scrollTop > 300) {
+            if (!scrollToTopBtn) {
+                scrollToTopBtn = document.createElement('button');
+                scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+                scrollToTopBtn.style.position = 'fixed';
+                scrollToTopBtn.style.bottom = 'calc(var(--bottom-nav-height) + var(--safe-area-bottom) + 90px)';
+                scrollToTopBtn.style.left = '20px';
+                scrollToTopBtn.style.width = '40px';
+                scrollToTopBtn.style.height = '40px';
+                scrollToTopBtn.style.borderRadius = '50%';
+                scrollToTopBtn.style.backgroundColor = 'var(--primary)';
+                scrollToTopBtn.style.color = 'white';
+                scrollToTopBtn.style.border = 'none';
+                scrollToTopBtn.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+                scrollToTopBtn.style.zIndex = '99';
+                scrollToTopBtn.style.display = 'flex';
+                scrollToTopBtn.style.alignItems = 'center';
+                scrollToTopBtn.style.justifyContent = 'center';
+                scrollToTopBtn.style.cursor = 'pointer';
+                scrollToTopBtn.style.transition = 'all 0.3s';
+                
+                scrollToTopBtn.addEventListener('click', function() {
+                    appContent.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                document.body.appendChild(scrollToTopBtn);
+            } else {
+                scrollToTopBtn.style.display = 'flex';
+            }
+        } else if (scrollToTopBtn) {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+    
+    // Add animation to review cards on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    
+    // Initially hide review cards and observe them
+    reviewCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
+    });
+});
+</script>
+</body>
 </html>
